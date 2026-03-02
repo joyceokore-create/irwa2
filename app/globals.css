@@ -4,3 +4,26 @@
 
 /* Optional: smooth scrolling */
 html { scroll-behavior: smooth; }
+.shimmer-text {
+  background: linear-gradient(
+    110deg,
+    rgba(255,255,255,0.4) 25%,
+    rgba(255,255,255,0.9) 45%,
+    rgba(255,255,255,0.4) 65%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shimmer 4s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.perspective-1400 {
+  perspective: 1400px;
+}
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}

@@ -4,8 +4,17 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 
-
+import Hero3DCarousel from "./Hero3DCarousel";
 import svgPaths from "../imports/svg-fo73us6i1o";
+
+
+<motion.div
+  initial={{ opacity: 0, scale: 1.05 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 1.2, ease: "easeOut" }}
+>
+  <Hero3DCarousel />
+</motion.div>
 import { imgTransition } from "../imports/svg-psl46";
 
 const imgZutIsland =
@@ -370,208 +379,63 @@ export default function ResponsiveBackground() {
           </a>
         </div>
       </div>
+{/* PREMIUM HERO */}
+<section
+  id="hero"
+  className="relative min-h-screen flex items-center overflow-hidden bg-[#070b14] text-white"
+>
+  {/* Animated mesh gradient */}
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,#1e293b,transparent_40%),radial-gradient(circle_at_80%_70%,#4f46e5,transparent_35%)] opacity-40" />
 
-      {/* Hero */}
-      <motion.section
-        ref={heroRef as any}
-        id="hero"
-        initial="hidden"
-        animate={mounted ? "visible" : "hidden"}
-        variants={fadeInVariants}
-        transition={heroTransition}
-        className="relative w-full overflow-hidden pt-24 md:pt-28"
-        style={{
-          backgroundImage:
-            "linear-gradient(134.788579deg, rgb(240, 249, 255) 0%, rgb(238, 242, 255) 100%)",
-        }}
-      >
-        {/* subtle grid */}
-        <div
-          className="absolute inset-0 opacity-60"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0, 0, 0, 0.03) 2.5%, rgba(0, 0, 0, 0) 2.5%), linear-gradient(90deg, rgba(0, 0, 0, 0.03) 2.5%, rgba(0, 0, 0, 0) 2.5%)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-        {/* glow blobs */}
-        <div className="absolute bg-[#c7d2fe] blur-[50px] opacity-20 rounded-full w-[320px] h-[320px] md:w-[520px] md:h-[520px] top-[-140px] right-[8%]" />
-        <div className="absolute bg-[#ffd4d4] blur-[60px] opacity-20 rounded-full w-[260px] h-[260px] md:w-[420px] md:h-[420px] bottom-[-140px] left-[5%]" />
+  {/* Subtle grid */}
+  <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:60px_60px]" />
 
-        <div className="relative px-4 md:px-8 lg:px-24 py-14 md:py-20 lg:py-28 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            {/* Copy */}
-            <motion.div
-              initial="hidden"
-              animate={mounted ? "visible" : "hidden"}
-              variants={fadeInUpVariants}
-              transition={{
-                duration: reduceMotion ? 0 : 0.7,
-                delay: reduceMotion ? 0 : 0.15,
-              }}
-              className="space-y-6"
-            >
-              <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-4 py-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-[#ff272a]" />
-                <p className="text-[#ff272a] text-xs md:text-sm font-semibold">
-                  Next Generation Value
-                </p>
-                <span className="text-xs text-black/40 hidden sm:inline">
-                  • Tokenize connection
-                </span>
-              </div>
+  <div className="relative max-w-7xl mx-auto px-6 lg:px-24 py-28 grid lg:grid-cols-2 gap-16 items-center">
 
-              <div className="space-y-3">
-                <h1 className="text-[2.4rem] leading-[1.05] md:text-5xl lg:text-6xl font-bold tracking-tight">
-                  Tokenize the{" "}
-                  <span
-                    className="bg-clip-text text-transparent"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(117.702645deg, rgb(79, 70, 229) 0%, rgb(236, 72, 153) 100%)",
-                    }}
-                  >
-                    connection
-                  </span>
-                  , not the asset.
-                </h1>
-                <p className="text-black/70 text-base md:text-lg lg:text-xl leading-relaxed max-w-xl">
-                  iRWA creates a new asset class based on emotional connection,
-                  loyalty, and intangible benefits. Own the impact, not the
-                  item.
-                </p>
-              </div>
+    {/* LEFT SIDE */}
+    <div className="space-y-8">
 
-              <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                <motion.a
-                  href="#cta"
-                  whileHover={reduceMotion ? undefined : { scale: 1.03 }}
-                  whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-                  className="inline-flex items-center justify-center bg-[#ff272a] text-white px-7 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  Get Started
-                </motion.a>
-                <motion.a
-                  href="#projects"
-                  whileHover={reduceMotion ? undefined : { scale: 1.03 }}
-                  whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-                  className="inline-flex items-center justify-center border border-black/10 bg-white/70 text-black px-7 py-4 rounded-2xl font-semibold hover:bg-white transition"
-                >
-                  Explore Projects
-                </motion.a>
-                <motion.a
-                  href="#how"
-                  whileHover={reduceMotion ? undefined : { scale: 1.03 }}
-                  whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-                  className="inline-flex items-center justify-center text-black/70 px-7 py-4 rounded-2xl font-semibold hover:text-black transition"
-                >
-                  How it works →
-                </motion.a>
-              </div>
+      <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+        <span className="w-2 h-2 bg-[#ff272a] rounded-full animate-pulse" />
+        <span className="text-xs tracking-wide uppercase text-white/70">
+          Intangible Real World Assets
+        </span>
+      </div>
 
-              {/* micro trust row */}
-              <div className="pt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-black/55">
-                <span className="inline-flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#22c55e]" />
-                  Interoperable tokens
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#4f46e5]" />
-                  Benefit-based value
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#ec4899]" />
-                  Community alignment
-                </span>
-              </div>
-            </motion.div>
+      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+        Tokenize the{" "}
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-pink-400 to-red-400 animate-gradient">
+          connection
+        </span>
+        , not the asset.
+      </h1>
 
-            {/* Visual */}
-            <motion.div
-              initial="hidden"
-              animate={mounted ? "visible" : "hidden"}
-              variants={scaleInVariants}
-              transition={{
-                duration: reduceMotion ? 0 : 0.8,
-                delay: reduceMotion ? 0 : 0.2,
-              }}
-              className="relative"
-            >
-              <div className="relative aspect-[4/3] md:aspect-square max-w-lg mx-auto">
-                <div className="absolute -inset-2 rounded-[28px] bg-gradient-to-br from-[#4f46e5]/20 via-[#ec4899]/15 to-[#ff272a]/15 blur-xl" />
-                <motion.div
-                  initial={{ scale: 0.98, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{
-                    duration: reduceMotion ? 0 : 0.8,
-                    delay: reduceMotion ? 0 : 0.25,
-                  }}
-                  className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl bg-gray-100 ring-1 ring-black/5"
-                >
-                  {/* Image removed due to deployment issues */}
-                </motion.div>
+      <p className="text-white/60 text-lg max-w-xl">
+        We measure, transact, and reward your connection to assets —
+        values, ideology, belief, culture, community.
+      </p>
 
-                {/* Floating info */}
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    duration: reduceMotion ? 0 : 0.6,
-                    delay: reduceMotion ? 0 : 0.55,
-                  }}
-                  className="absolute -left-2 md:-left-8 top-[10%] backdrop-blur-sm bg-white/90 p-4 md:p-5 rounded-2xl border border-black/10 shadow-lg max-w-[190px]"
-                >
-                  <p className="text-xs text-black/55 mb-2">Total Value</p>
-                  <p className="text-lg md:text-xl font-bold">iRWA + RWA</p>
-                  <p className="text-xs text-black/50 mt-1">Emotion + finance</p>
-                </motion.div>
+      <div className="flex gap-4">
+        <a
+          href="#cta"
+          className="px-7 py-4 rounded-2xl bg-[#ff272a] font-semibold shadow-lg hover:shadow-red-500/30 transition"
+        >
+          Build with us
+        </a>
+        <a
+          href="/evolution"
+          className="px-7 py-4 rounded-2xl border border-white/20 text-white/80 hover:bg-white/5 transition"
+        >
+          Our Evolution
+        </a>
+      </div>
+    </div>
 
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    duration: reduceMotion ? 0 : 0.6,
-                    delay: reduceMotion ? 0 : 0.7,
-                  }}
-                  className="absolute -right-2 md:-right-8 bottom-[10%] backdrop-blur-sm bg-white/90 p-4 md:p-5 rounded-2xl border border-black/10 shadow-lg max-w-[220px]"
-                >
-                  <p className="text-xs text-black/55 mb-2">Sentiment Score</p>
-                  <div className="w-full h-1.5 bg-black/10 rounded-full overflow-hidden mb-2">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: "85%" }}
-                      transition={{
-                        duration: reduceMotion ? 0 : 1,
-                        delay: reduceMotion ? 0 : 0.9,
-                      }}
-                      className="h-full bg-gradient-to-r from-[#4f46e5] to-[#ec4899]"
-                    />
-                  </div>
-                  <div className="flex justify-between text-xs text-black/60">
-                    <span>High Impact</span>
-                    <span>85%</span>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+    {/* RIGHT SIDE — 3D CURVED CAROUSEL */}
+    <Hero3DCarousel />
 
-        {/* Wave divider */}
-        <div className="absolute bottom-0 left-0 w-full h-16 md:h-24">
-          <svg
-            className="block w-full h-full"
-            fill="none"
-            preserveAspectRatio="none"
-            viewBox="0 0 1440 120"
-          >
-            <path
-  d="M0 64C120 90 240 104 360 96C480 88 600 60 720 48C840 36 960 40 1080 56C1200 72 1320 98 1440 108V120H0V64Z"
-  fill="#F8FAFC"
-/>
-          </svg>
-        </div>
-      </motion.section>
+  </div>
+</section>
 
       {/* Stats / trust strip */}
       <section className="bg-[#f8fafc] px-4 md:px-8 lg:px-24 py-10 md:py-14">
