@@ -5,6 +5,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 
 import Hero3DCarousel from "./Hero3DCarousel";
+import ParticleNetwork from "./ParticleNetwork";
+
+import MagneticButton from "./MagneticButton";
 import svgPaths from "../imports/svg-fo73us6i1o";
 
 
@@ -390,10 +393,10 @@ export default function ResponsiveBackground() {
   {/* Subtle grid */}
   <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:60px_60px]" />
 
-  <div className="relative max-w-7xl mx-auto px-6 lg:px-24 py-28 grid lg:grid-cols-2 gap-16 items-center">
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-24 py-16 sm:py-20 md:py-28 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
 
     {/* LEFT SIDE */}
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
 
       <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
         <span className="w-2 h-2 bg-[#ff272a] rounded-full animate-pulse" />
@@ -402,7 +405,7 @@ export default function ResponsiveBackground() {
         </span>
       </div>
 
-      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
+      <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
         Tokenize the{" "}
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-pink-400 to-red-400 animate-gradient">
           connection
@@ -410,21 +413,21 @@ export default function ResponsiveBackground() {
         , not the asset.
       </h1>
 
-      <p className="text-white/60 text-lg max-w-xl">
+      <p className="text-white/60 text-base sm:text-lg max-w-xl">
         We measure, transact, and reward your connection to assets —
         values, ideology, belief, culture, community.
       </p>
 
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <a
           href="#cta"
-          className="px-7 py-4 rounded-2xl bg-[#ff272a] font-semibold shadow-lg hover:shadow-red-500/30 transition"
+          className="px-7 py-4 rounded-2xl bg-[#ff272a] font-semibold shadow-lg hover:shadow-red-500/30 transition text-center sm:text-left"
         >
           Build with us
         </a>
         <a
           href="/evolution"
-          className="px-7 py-4 rounded-2xl border border-white/20 text-white/80 hover:bg-white/5 transition"
+          className="px-7 py-4 rounded-2xl border border-white/20 text-white/80 hover:bg-white/5 transition text-center sm:text-left"
         >
           Our Evolution
         </a>
@@ -432,7 +435,9 @@ export default function ResponsiveBackground() {
     </div>
 
     {/* RIGHT SIDE — 3D CURVED CAROUSEL */}
-    <Hero3DCarousel />
+    <div className="flex justify-center lg:justify-end order-1 lg:order-2 w-full">
+      <Hero3DCarousel />
+    </div>
 
   </div>
 </section>
