@@ -738,6 +738,70 @@ export default function ResponsiveBackground() {
 
       </section>
 
+{/* Ecosystem Section */}
+<section id="ecosystem" className="scroll-mt-24 bg-white px-4 md:px-8 lg:px-24 py-12 md:py-20 lg:py-28">
+  <div className="max-w-6xl mx-auto space-y-10">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.25 }}
+      variants={fadeInUpVariants}
+      transition={{ duration: 0.6 }}
+      className="text-center space-y-3"
+    >
+      <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold">The iRWA Ecosystem</h2>
+      <p className="text-[#949494] text-base md:text-lg max-w-3xl mx-auto">
+        One account. One balance. Allocate across projects seamlessly — coffee, islands, infrastructure, culture — while the token mechanics stay in the background.
+      </p>
+    </motion.div>
+
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-6">
+      {[
+        {
+          title: "1) Simple Participation",
+          badge: "Front-End",
+          points: ["One unified account", "Top up $10 / $20 / $100", "Receive ecosystem points", "Allocate across projects anytime"],
+        },
+        {
+          title: "2) Unified Token Layer",
+          badge: "Back-End",
+          points: ["Main ecosystem token", "Project-specific tokens", "Swappable compatibility", "No fragmentation — one system"],
+        },
+        {
+          title: "3) Retail Entry Layer",
+          badge: "Everyday",
+          points: ["Micro-contributions at checkout", "Optional $0.05 / $0.5 / $1 prompts", "Earn rewards as soft entry", "Discover projects through redemption options"],
+        },
+      ].map((card, idx) => (
+        <motion.div
+          key={card.title}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={scaleInVariants}
+          transition={{ duration: 0.55, delay: idx * 0.08 }}
+          className="bg-white rounded-2xl border border-[#e8e8e8] shadow-sm p-6 md:p-7"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-lg md:text-xl font-bold">{card.title}</h3>
+            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-[#fff1f2] text-[#ff272a] border border-[#fecdd3]">
+              {card.badge}
+            </span>
+          </div>
+          <ul className="space-y-2 text-sm md:text-base text-[#64748b]">
+            {card.points.map((p) => (
+              <li key={p} className="flex gap-2">
+                <span className="mt-2 inline-block w-1.5 h-1.5 rounded-full bg-[#ff272a]" />
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
       {/* Instruments */}
       <section
         id="instruments"
@@ -1321,6 +1385,62 @@ export default function ResponsiveBackground() {
         </div>
       </section>
 
+{/* Rewards & Experiences */}
+<section id="rewards" className="scroll-mt-24 bg-[#f8fafc] px-4 md:px-8 lg:px-24 py-12 md:py-20 lg:py-28">
+  <div className="max-w-6xl mx-auto space-y-10">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.25 }}
+      variants={fadeInUpVariants}
+      transition={{ duration: 0.6 }}
+      className="text-center space-y-3"
+    >
+      <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold">Rewards, Recognition & Experiences</h2>
+      <p className="text-[#949494] text-base md:text-lg max-w-3xl mx-auto">
+        Participation shouldn’t feel like passive donation. Earn real benefits: discounts, experiences, draws, and tier-based access — with visible impact over time.
+      </p>
+    </motion.div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+      {[
+        {
+          title: "Instant Rewards",
+          items: ["Brand discounts", "Partner experiences", "Periodic prize draws", "Cause-specific benefits (e.g., coffee bags, access)"],
+        },
+        {
+          title: "Quarterly Impact Experiences",
+          items: ["Project visits", "Community immersion", "On-ground engagement", "Document real-world outcomes"],
+        },
+        {
+          title: "Tier Progression",
+          items: ["Entry-level benefits", "Mid-tier rewards", "VIP / premium experiences", "Recurring connection options"],
+        },
+      ].map((b, idx) => (
+        <motion.div
+          key={b.title}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={scaleInVariants}
+          transition={{ duration: 0.55, delay: idx * 0.08 }}
+          className="bg-white rounded-2xl border border-[#e8e8e8] shadow-sm p-6 md:p-7"
+        >
+          <h3 className="text-lg md:text-xl font-bold mb-3">{b.title}</h3>
+          <ul className="space-y-2 text-sm md:text-base text-[#64748b]">
+            {b.items.map((t) => (
+              <li key={t} className="flex gap-2">
+                <span className="mt-2 inline-block w-1.5 h-1.5 rounded-full bg-[#4f46e5]" />
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
       {/* FAQ */}
       <section id="faq" className="bg-[#f8fafc] px-4 md:px-8 lg:px-24 py-12 md:py-20 lg:py-28">
         {/* unchanged */}
@@ -1375,6 +1495,75 @@ export default function ResponsiveBackground() {
           </div>
         </div>
       </section>
+{/* Unified Dashboard Concept */}
+<section id="dashboard" className="scroll-mt-24 bg-white px-4 md:px-8 lg:px-24 py-12 md:py-20 lg:py-24">
+  <div className="max-w-6xl mx-auto space-y-10">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.25 }}
+      variants={fadeInUpVariants}
+      transition={{ duration: 0.6 }}
+      className="text-center space-y-3"
+    >
+      <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold">Your Unified Dashboard</h2>
+      <p className="text-[#949494] text-base md:text-lg max-w-3xl mx-auto">
+        A single place to view your total participation footprint, project allocations, tier status, and measurable impact indicators.
+      </p>
+    </motion.div>
+
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        variants={scaleInVariants}
+        transition={{ duration: 0.55 }}
+        className="rounded-2xl border border-[#e8e8e8] bg-gradient-to-r from-[#eef2ff] to-[#fdf2f8] p-6 md:p-8"
+      >
+        <h3 className="text-xl md:text-2xl font-bold mb-2">Level 1: Ecosystem Overview</h3>
+        <p className="text-[#64748b] mb-4">
+          Minimal snapshot: total participation volume, active projects, and aggregate impact indicators.
+        </p>
+        <div className="grid grid-cols-3 gap-3">
+          {["Total Volume", "Active Projects", "Impact Indicators"].map((k) => (
+            <div key={k} className="rounded-xl bg-white/70 border border-black/5 p-4">
+              <p className="text-xs text-black/50">{k}</p>
+              <p className="text-lg font-bold mt-1">—</p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.25 }}
+        variants={scaleInVariants}
+        transition={{ duration: 0.55, delay: 0.06 }}
+        className="rounded-2xl border border-[#e8e8e8] bg-white p-6 md:p-8 shadow-sm"
+      >
+        <h3 className="text-xl md:text-2xl font-bold mb-2">Level 2: Project Dashboards</h3>
+        <p className="text-[#64748b] mb-4">
+          Per project: funds raised, allocation history, beneficiary metrics, real-world equivalents, tier progress, and links.
+        </p>
+        <div className="space-y-2 text-sm md:text-base text-[#64748b]">
+          {[
+            "Funds raised + allocation history",
+            "Beneficiary metrics + equivalents",
+            "Tier status + rewards",
+            "Project media + socials",
+          ].map((t) => (
+            <div key={t} className="flex gap-2">
+              <span className="mt-2 inline-block w-1.5 h-1.5 rounded-full bg-[#ff272a]" />
+              <span>{t}</span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
       {/* CTA */}
       <section id="cta" className="bg-[#0b0f19] px-4 md:px-8 lg:px-24 py-16 md:py-24 lg:py-28">
