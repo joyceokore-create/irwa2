@@ -8,6 +8,8 @@ import {
   useSpring,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import SiteFooter from "../components/SiteFooter";
+import SiteHeader from "../components/SiteHeader";
 
 type TimelineItem = {
   year: string;
@@ -108,7 +110,7 @@ export default function EvolutionPage() {
 
   return (
     <div
-      className="relative min-h-screen overflow-hidden bg-[#070b14] text-white"
+      className="relative min-h-screen overflow-hidden bg-[#070b14] text-white pt-20"
       onPointerMove={(e) => {
         if (!cursorEnabled) return;
         setCursor({ x: e.clientX, y: e.clientY, show: true });
@@ -129,6 +131,8 @@ export default function EvolutionPage() {
           className="pointer-events-none fixed left-0 top-0 z-50 h-40 w-40 rounded-full bg-[radial-gradient(circle,#ff4f8b55_0%,#ff272a30_45%,transparent_75%)] blur-2xl"
         />
       )}
+
+      <SiteHeader currentPath="/evolution" />
 
       {/* HERO */}
       <section className="relative min-h-[76vh] flex items-center justify-center px-6 lg:px-24 py-24">
@@ -265,6 +269,7 @@ export default function EvolutionPage() {
           </a>
         </motion.div>
       </section>
+      <SiteFooter currentPath="/evolution" />
     </div>
   );
 }
