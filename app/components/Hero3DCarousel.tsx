@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 type Mouse = { x: number; y: number };
 
 const items = [
-  { label: "National Treasures", img: "/assets/dali.jpg" },
-  { label: "Our Love with Coffee", img: "/assets/coffee.jpg" },
-  { label: "Island Culture", img: "/assets/zut-island.jpg" },
-  { label: "Future of Transport", img: "/assets/ev-car.jpg" },
+  { label: "National Treasures", img: "/assets/Persistence.jpeg" },
+  { label: "Our Love with Coffee", img: "/assets/bean-you.jpg" },
+  { label: "Island Culture", img: "/assets/4bc9574431d9787ae40236108382b161a5adf868.png" },
+  { label: "Future of Transport", img: "/assets/ev-mineral.jpg" },
 ];
 
 export default function Hero3DCarousel({

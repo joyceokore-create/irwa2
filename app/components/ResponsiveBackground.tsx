@@ -413,10 +413,13 @@ export default function ResponsiveBackground() {
         , not the asset.
       </h1>
 
-      <p className="text-white/60 text-base sm:text-lg max-w-xl">
-        We measure, transact, and reward your connection to assets —
-        values, ideology, belief, culture, community.
-      </p>
+<p className="text-white/70 text-lg max-w-xl leading-relaxed">
+  We measure, transact, and reward your connection to assets:
+</p>
+
+<div className="text-xl md:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-pink-400 to-red-400">
+  Values • Ideology • Opinion • Faith • Belief
+</div>
 
       <div className="flex flex-col sm:flex-row gap-4">
         <a
@@ -483,10 +486,20 @@ export default function ResponsiveBackground() {
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
               Redefining Value
             </h2>
-            <p className="text-black/65 text-base md:text-lg max-w-2xl mx-auto">
-              Move beyond financial ownership to emotional stewardship — where
-              meaning, community, and access drive value.
-            </p>
+           <p className="text-black/70 text-base md:text-lg max-w-3xl mx-auto">
+  For 5,000 years, markets measured value in ownership.
+  We measure value in belief.
+
+  Financial assets capture capital.
+  iRWA captures conviction.
+</p>
+ <div className="mt-10 text-center max-w-3xl mx-auto">
+  <p className="text-lg md:text-xl text-black/70">
+    Intangible assets already shape economies —
+    brands, movements, ideologies, communities.
+    We simply make them measurable and transactable.
+  </p>
+</div>
           </motion.div>
 
           <motion.div
@@ -671,58 +684,7 @@ export default function ResponsiveBackground() {
   </div>
 </section>
 
-      {/* Instruments */}
-      <section
-        id="instruments"
-        className="bg-[#f8fafc] px-4 md:px-8 lg:px-24 py-12 md:py-20 lg:py-28"
-      >
-        {/* unchanged */}
-        <div className="max-w-6xl mx-auto space-y-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            variants={fadeInUpVariants}
-            transition={{ duration: reduceMotion ? 0 : 0.6 }}
-            className="text-center space-y-3"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-              Instruments &amp; Evolution
-            </h2>
-            <p className="text-black/65 text-base md:text-lg max-w-2xl mx-auto">
-              From traditional assets to emotional connections
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {[
-              { title: "NFTs", desc: "Digital ownership & provenance", bg: "bg-[#f4efff]" },
-              { title: "iRWA Tokens", desc: "Emotional value tokenization", bg: "bg-[#fdeff6]" },
-              { title: "Smart Contracts", desc: "Automated benefit distribution", bg: "bg-[#eef6ff]" },
-              { title: "Loyalty Points", desc: "Connection-based rewards", bg: "bg-[#effbf1]" },
-            ].map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportCards}
-                variants={scaleInVariants}
-                transition={{
-                  duration: reduceMotion ? 0 : 0.55,
-                  delay: reduceMotion ? 0 : idx * 0.06,
-                }}
-                whileHover={reduceMotion ? undefined : { y: -6 }}
-                className={`${item.bg} rounded-2xl p-6 md:p-8 border border-black/5 shadow-sm`}
-              >
-                <h3 className="text-xl md:text-2xl font-bold text-black mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-black/60 text-base md:text-lg">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+   
 
       {/* Benefits */}
       <section id="benefits" className="bg-white px-4 md:px-8 lg:px-24 py-12 md:py-20 lg:py-28">
@@ -1194,65 +1156,7 @@ export default function ResponsiveBackground() {
         </div>
       </section>
 
-      {/* Team */}
-      <section id="team" className="scroll-mt-24 bg-white px-4 md:px-8 lg:px-24 py-12 md:py-20 lg:py-28">
-        {/* unchanged */}
-        <div className="max-w-6xl mx-auto space-y-12">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            variants={fadeInUpVariants}
-            transition={{ duration: reduceMotion ? 0 : 0.6 }}
-            className="text-center space-y-4"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-              Leadership
-            </h2>
-            <p className="text-black/65 text-base md:text-lg">
-              Meet the team behind iRWA
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-            {[
-              { img: "/assets/patrick.png", name: "Patrick Ngumi", role: "Interim CEO" },
-              { img: "/assets/OLINGA.png", name: "Olinga Taeed", role: "Executive Chair" },
-              { img: "/assets/peter.png", name: "Peter Kangari", role: "Founder" },
-            ].map((person, idx) => (
-              <motion.div
-                key={person.name}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportCards}
-                variants={fadeInUpVariants}
-                transition={{
-                  duration: reduceMotion ? 0 : 0.55,
-                  delay: reduceMotion ? 0 : idx * 0.08,
-                }}
-                whileHover={reduceMotion ? undefined : { y: -6 }}
-                className="text-center space-y-4"
-              >
-                <div className="relative mx-auto w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-md bg-gray-100 ring-1 ring-black/5">
-                  <Image
-                    src={person.img}
-                    alt={person.name}
-                    width={160}
-                    height={160}
-                    sizes="(max-width: 768px) 128px, 160px"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold">{person.name}</h3>
-                  <p className="text-black/60">{person.role}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+  
 
 {/* Rewards & Experiences */}
 <section id="rewards" className="scroll-mt-24 bg-[#f8fafc] px-4 md:px-8 lg:px-24 py-12 md:py-20 lg:py-28">
