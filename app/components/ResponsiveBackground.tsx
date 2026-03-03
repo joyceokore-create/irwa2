@@ -385,10 +385,13 @@ export default function ResponsiveBackground() {
 {/* PREMIUM HERO */}
 <section
   id="hero"
-  className="relative min-h-screen flex items-center overflow-hidden bg-[#070b14] text-white"
+  className="relative min-h-screen flex items-center overflow-hidden 
+  bg-gradient-to-br from-slate-50 via-white to-indigo-50 text-[#0b0f19]"
 >
   {/* Animated mesh gradient */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,#1e293b,transparent_40%),radial-gradient(circle_at_80%_70%,#4f46e5,transparent_35%)] opacity-40" />
+  {/* Soft colour therapy glows */}
+  <div className="absolute top-[-200px] left-[-150px] w-[500px] h-[500px] bg-indigo-200/40 blur-3xl rounded-full" />
+  <div className="absolute bottom-[-200px] right-[-150px] w-[500px] h-[500px] bg-rose-200/40 blur-3xl rounded-full" />
 
   {/* Subtle grid */}
   <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:60px_60px]" />
@@ -405,8 +408,8 @@ export default function ResponsiveBackground() {
         </span>
       </div>
 
-      <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight">
-        Tokenize the{" "}
+<h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[1.05]">
+          Tokenize the{" "}
         <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-pink-400 to-red-400 animate-gradient">
           connection
         </span>

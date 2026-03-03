@@ -7,10 +7,30 @@ import { useEffect, useState } from "react";
 type Mouse = { x: number; y: number };
 
 const items = [
-  { label: "National Treasures", img: "/assets/Persistence.jpeg" },
-  { label: "Our Love with Coffee", img: "/assets/bean-you.jpg" },
-  { label: "Island Culture", img: "/assets/4bc9574431d9787ae40236108382b161a5adf868.png" },
-  { label: "Future of Transport", img: "/assets/ev-mineral.jpg" },
+  {
+    title: "National Treasures",
+    subtitle: "Cultural belief economies",
+    metric: "Live pilot",
+    img: "/assets/Persistence.jpeg",
+  },
+  {
+    title: "Bean You",
+    subtitle: "Coffee-backed emotional value",
+    metric: "15,000+ acres",
+    img: "/assets/bean-you.jpg",
+  },
+  {
+    title: "Zut Island",
+    subtitle: "Meditation & olive ecosystems",
+    metric: "Croatia",
+    img: "/assets/4bc9574431d9787ae40236108382b161a5adf868.png",
+  },
+  {
+    title: "EV Minerals",
+    subtitle: "Ethical sourcing layer",
+    metric: "770,400 km²",
+    img: "/assets/ev-mineral.jpg",
+  },
 ];
 
 export default function Hero3DCarousel({
@@ -50,7 +70,12 @@ export default function Hero3DCarousel({
             >
               <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
 
-                <Image src={item.img} alt={item.label} fill className="object-cover opacity-90" />
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  fill
+                  className="object-cover opacity-90"
+                />
 
                 {/* Gloss reflection */}
                 <div
@@ -61,10 +86,18 @@ export default function Hero3DCarousel({
                   }}
                 />
 
-                <div className="absolute bottom-0 w-full p-4 bg-gradient-to-t from-black/70 to-transparent">
-                  <span className="text-sm font-semibold shimmer-text">
-                    {item.label}
-                  </span>
+                <div className="absolute bottom-0 w-full p-5 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                  <div className="space-y-1">
+                    <div className="text-sm font-semibold text-white">
+                      {item.title}
+                    </div>
+                    <div className="text-xs text-white/70">
+                      {item.subtitle}
+                    </div>
+                    <div className="text-xs text-indigo-300 font-medium">
+                      {item.metric}
+                    </div>
+                  </div>
                 </div>
 
               </div>
