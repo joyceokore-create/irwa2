@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { NAV_ITEMS, resolveNavHref, type SitePath } from "./siteNavigation";
 
@@ -14,6 +14,17 @@ type SiteHeaderProps = {
 
 export default function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const total =
+        document.documentElement.scrollHeight - window.innerHeight;
+      setScrollProgress(total > 0 ? window.scrollY / total : 0);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -47,6 +58,11 @@ export default function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
+      {/* Scroll progress bar */}
+      <div
+        className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-[#ff272a] via-[#ff4f8b] to-[#ff7a45] z-50 transition-none"
+        style={{ width: `${scrollProgress * 100}%` }}
+      />
       <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-24">
         <div className="mt-3 rounded-2xl border border-black/5 bg-white/80 backdrop-blur-md shadow-sm">
           <div className="flex items-center justify-between px-4 py-3 md:px-6">
