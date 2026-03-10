@@ -164,6 +164,23 @@ export default function ResponsiveBackground() {
         "Education centre access",
       ],
     },
+    {
+      tag: "Coming soon",
+      topColor: "#D97706",
+      badgeGradient: "from-amber-500 to-yellow-600",
+      img: "/assets/Persistence.jpeg",
+      title: "Dalí",
+      desc: "A painting bought for €150 from a Spanish antique shop, later authenticated as Salvador Dalí's earliest surrealist work — painted in 1921 at age 17.",
+      impact: "Cultural heritage & art access",
+      holders: null,
+      href: "",
+      benefits: [
+        "Co-ownership of authenticated art provenance",
+        "Private exhibition & gallery access",
+        "Surrealist cultural event invitations",
+        "Tier-based art loan programme access",
+      ],
+    },
   ];
 
   const rewards = [
@@ -260,7 +277,7 @@ export default function ResponsiveBackground() {
             initial="hidden"
             animate="show"
             variants={{ hidden: {}, show: { transition: { staggerChildren: 0.11 } } }}
-            className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left px-6 sm:px-10 lg:px-16 pt-4 pb-12 lg:py-0 order-2 lg:order-1"
+            className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left px-6 sm:px-10 lg:pl-12 lg:pr-6 pt-4 pb-12 lg:py-0 order-2 lg:order-1"
           >
             {/* Badge */}
             <motion.div
@@ -274,16 +291,17 @@ export default function ResponsiveBackground() {
             {/* Cycling word */}
             <motion.div
               variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.45 } } }}
-              className="overflow-hidden mb-3"
-              style={{ height: "clamp(68px, 17vw, 108px)" }}
+              className="overflow-hidden mb-3 w-full"
+              style={{ height: "clamp(56px, 12vw, 88px)" }}
             >
               <AnimatePresence mode="wait">
                 <motion.span
                   key={CYCLING_WORDS[wordIndex]}
                   className="block font-black tracking-tighter select-none"
                   style={{
-                    fontSize: "clamp(68px, 17vw, 108px)",
+                    fontSize: "clamp(56px, 12vw, 88px)",
                     lineHeight: 1,
+                    paddingRight: "0.08em",
                     background: "linear-gradient(90deg, #FF6035 0%, #F43F5E 38%, #8B5CF6 72%, #2563EB 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
@@ -321,15 +339,32 @@ export default function ResponsiveBackground() {
             </motion.a>
           </motion.div>
 
-          {/* RIGHT — carousel, top on mobile, clipped to column */}
+          {/* RIGHT — carousel, top on mobile */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden flex items-center justify-center px-6 sm:px-10 lg:px-8 pt-16 sm:pt-12 lg:pt-0 pb-10 lg:pb-0 order-1 lg:order-2"
+            className="flex items-center justify-center px-6 sm:px-10 lg:px-8 pt-16 sm:pt-12 lg:pt-0 pb-10 lg:pb-0 order-1 lg:order-2"
           >
-            <div className="w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px]">
-              <Hero3DCarousel />
+            <div
+              className="relative w-full max-w-[520px] overflow-hidden rounded-[36px] p-5 sm:p-7"
+              style={{
+                background: "rgba(255,255,255,0.75)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                border: "1px solid rgba(255,255,255,0.85)",
+                boxShadow: "0 30px 80px rgba(255,96,53,0.14), 0 8px 24px rgba(0,0,0,0.06)",
+              }}
+            >
+              <div
+                className="absolute inset-0 pointer-events-none rounded-[36px]"
+                style={{
+                  background: "linear-gradient(135deg, rgba(255,96,53,0.07) 0%, transparent 50%, rgba(37,99,235,0.05) 100%)",
+                }}
+              />
+              <div className="relative">
+                <Hero3DCarousel />
+              </div>
             </div>
           </motion.div>
 

@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-
-type Mouse = { x: number; y: number };
+import { useEffect, useRef, useState } from "react";
 
 const items = [
   {
@@ -69,29 +67,49 @@ const items = [
   },
 ];
 
-const VISIBLE_SIDE_CARDS = 1;
+const VISIBLE_SIDE_CARDS = 2;
 
 function getSignedDistance(index: number, activeIndex: number, total: number) {
   const wrapped = (index - activeIndex + total) % total;
   return wrapped > total / 2 ? wrapped - total : wrapped;
 }
 
-export default function Hero3DCarousel({
-  mouse = { x: 0, y: 0 },
-}: {
-  mouse?: Mouse;
-}) {
+export default function Hero3DCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const i = setInterval(() => {
+    const t = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % items.length);
     }, 3500);
-    return () => clearInterval(i);
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const onMove = (e: MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      setMouse({
+        x: ((e.clientX - rect.left) / rect.width - 0.5) * 20,
+        y: ((e.clientY - rect.top) / rect.height - 0.5) * 20,
+      });
+    };
+    const onLeave = () => setMouse({ x: 0, y: 0 });
+    el.addEventListener("mousemove", onMove);
+    el.addEventListener("mouseleave", onLeave);
+    return () => {
+      el.removeEventListener("mousemove", onMove);
+      el.removeEventListener("mouseleave", onLeave);
+    };
   }, []);
 
   return (
-    <div className="relative w-full max-w-[220px] sm:max-w-[280px] md:max-w-[340px] lg:max-w-[380px] h-[280px] sm:h-[320px] md:h-[340px] lg:h-[380px] mx-auto lg:mx-0 [perspective:1600px]">
+    <div
+      ref={containerRef}
+      className="relative w-full max-w-[220px] sm:max-w-[280px] md:max-w-[340px] lg:max-w-[380px] h-[280px] sm:h-[320px] md:h-[340px] lg:h-[380px] mx-auto [perspective:1600px]"
+    >
       <motion.div
         animate={{
           rotateY: mouse.x * 0.08,
@@ -107,7 +125,7 @@ export default function Hero3DCarousel({
 
           if (absDistance > VISIBLE_SIDE_CARDS) return null;
 
-          const translateX = distance * 32;
+          const translateX = distance * 46;
           const translateZ = 220 - absDistance * 95;
           const rotateY = -distance * 26;
           const scale = 1 - absDistance * 0.1;
