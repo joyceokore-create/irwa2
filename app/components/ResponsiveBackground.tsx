@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 import Hero3DCarousel from "./Hero3DCarousel";
 import SiteFooter from "./SiteFooter";
@@ -93,6 +94,16 @@ export default function ResponsiveBackground() {
     return () => clearInterval(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false, align: "start", dragFree: false });
+  const [emblaIndex, setEmblaIndex] = useState(0);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setEmblaIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    return () => { emblaApi.off("select", onSelect); };
+  }, [emblaApi]);
 
   const handleEmailSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -261,12 +272,12 @@ export default function ResponsiveBackground() {
         {/* Soft warm orb — top left */}
         <div className="absolute pointer-events-none"
           style={{ top: -60, left: -80, width: 480, height: 380,
-            background: "radial-gradient(circle, #FF6030 0%, transparent 68%)",
+            background: "radial-gradient(circle, #D42B27 0%, transparent 68%)",
             opacity: 0.11, filter: "blur(80px)" }} />
         {/* Soft cool orb — right */}
         <div className="absolute pointer-events-none"
           style={{ top: -20, right: -80, width: 520, height: 440,
-            background: "radial-gradient(circle, #3B5BFF 0%, transparent 68%)",
+            background: "radial-gradient(circle, #4E83B8 0%, transparent 68%)",
             opacity: 0.09, filter: "blur(100px)" }} />
 
         {/* ── Two-column grid ── */}
@@ -302,7 +313,7 @@ export default function ResponsiveBackground() {
                     fontSize: "clamp(56px, 12vw, 88px)",
                     lineHeight: 1,
                     paddingRight: "0.08em",
-                    background: "linear-gradient(90deg, #FF6035 0%, #F43F5E 38%, #8B5CF6 72%, #2563EB 100%)",
+                    background: "linear-gradient(90deg, #D42B27 0%, #7B4B9E 50%, #4E83B8 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -331,8 +342,8 @@ export default function ResponsiveBackground() {
               href="#cta"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-white hover:opacity-90 hover:scale-[1.02] transition-all active:scale-[0.98]"
               style={{
-                background: "linear-gradient(90deg, #FF6035 0%, #F43F5E 50%, #8B5CF6 100%)",
-                boxShadow: "0 6px 20px rgba(244,63,94,0.28)",
+                background: "linear-gradient(90deg, #D42B27 0%, #7B4B9E 50%, #4E83B8 100%)",
+                boxShadow: "0 6px 20px rgba(212,43,39,0.28)",
               }}
             >
               Get Started →
@@ -353,13 +364,13 @@ export default function ResponsiveBackground() {
                 backdropFilter: "blur(20px)",
                 WebkitBackdropFilter: "blur(20px)",
                 border: "1px solid rgba(255,255,255,0.85)",
-                boxShadow: "0 30px 80px rgba(255,96,53,0.14), 0 8px 24px rgba(0,0,0,0.06)",
+                boxShadow: "0 30px 80px rgba(212,43,39,0.14), 0 8px 24px rgba(0,0,0,0.06)",
               }}
             >
               <div
                 className="absolute inset-0 pointer-events-none rounded-[36px]"
                 style={{
-                  background: "linear-gradient(135deg, rgba(255,96,53,0.07) 0%, transparent 50%, rgba(37,99,235,0.05) 100%)",
+                  background: "linear-gradient(135deg, rgba(212,43,39,0.07) 0%, transparent 50%, rgba(78,131,184,0.05) 100%)",
                 }}
               />
               <div className="relative">
@@ -380,7 +391,7 @@ export default function ResponsiveBackground() {
           <p className="text-base sm:text-lg font-semibold text-gray-900 text-center sm:text-left">
             Tokenize the{" "}
             <span style={{
-              background: "linear-gradient(90deg, #FF6035 0%, #F43F5E 45%, #8B5CF6 100%)",
+              background: "linear-gradient(90deg, #D42B27 0%, #7B4B9E 50%, #4E83B8 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -390,7 +401,7 @@ export default function ResponsiveBackground() {
           <a
             href="#cta"
             className="shrink-0 px-6 py-2.5 rounded-full text-sm font-semibold text-white hover:opacity-90 transition active:scale-[0.98]"
-            style={{ background: "linear-gradient(90deg, #FF6035 0%, #F43F5E 50%, #8B5CF6 100%)" }}
+            style={{ background: "linear-gradient(90deg, #D42B27 0%, #7B4B9E 50%, #4E83B8 100%)" }}
           >
             Build with us
           </a>
@@ -403,7 +414,7 @@ export default function ResponsiveBackground() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: reduceMotion ? 0 : 0.9 }}
-        className="bg-[#ff272a] px-6 lg:px-24 py-16 md:py-20 overflow-hidden relative"
+        className="bg-gradient-to-r from-[#D42B27] to-[#4E83B8] px-6 lg:px-24 py-16 md:py-20 overflow-hidden relative"
       >
         <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:56px_56px] pointer-events-none" />
         <div className="max-w-5xl mx-auto text-center relative z-10 space-y-4">
@@ -485,7 +496,7 @@ export default function ResponsiveBackground() {
       >
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-center space-y-3">
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#ff272a]">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#D42B27]">
               Our Projects
             </span>
             <h2 className="text-4xl md:text-6xl font-semibold tracking-tight">
@@ -496,7 +507,81 @@ export default function ResponsiveBackground() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-10">
+          {/* Mobile carousel */}
+          <div className="md:hidden">
+            <div ref={emblaRef} className="overflow-hidden -mx-6 px-6">
+              <div className="flex gap-5">
+                {PROJECTS.map((p) => (
+                  <div
+                    key={p.title}
+                    className="group flex-[0_0_82%] rounded-[32px] bg-white/70 backdrop-blur-xl border border-slate-200 shadow-xl overflow-hidden"
+                    style={{ borderTopWidth: "4px", borderTopColor: p.topColor }}
+                  >
+                    <div className="relative h-52 overflow-hidden">
+                      <span className={`absolute top-4 left-4 z-10 px-3 py-1.5 text-xs font-semibold rounded-full bg-gradient-to-r ${p.badgeGradient} text-white shadow`}>
+                        {p.tag === "Coming soon" ? "Coming Soon" : "Public Exchange Token"}
+                      </span>
+                      {p.holders && (
+                        <span className="absolute top-4 right-4 z-10 px-3 py-1.5 text-xs font-semibold rounded-full bg-black/40 text-white backdrop-blur-sm">
+                          <CountUp to={parseInt(p.holders)} /> holders
+                        </span>
+                      )}
+                      <Image
+                        src={p.img}
+                        alt={p.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="p-6 space-y-5">
+                      <h3 className="text-xl font-semibold">{p.title}</h3>
+                      <p className="text-sm text-slate-500 leading-relaxed">{p.desc}</p>
+                      <div className="space-y-2.5 text-sm text-slate-600">
+                        {p.benefits.map((b) => (
+                          <div key={b} className="flex gap-2 items-start">
+                            <span className="w-2 h-2 mt-2 bg-[#4E83B8] rounded-full flex-shrink-0" />
+                            <span>{b}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="pt-3 border-t border-slate-200 text-sm text-slate-500">
+                        Impact focus:{" "}
+                        <span className="font-medium text-[#D42B27]">{p.impact}</span>
+                      </div>
+                      <div className="pt-2 flex items-center justify-between">
+                        {p.href ? (
+                          <>
+                            <a href={p.href} target="_blank" rel="noreferrer" className="text-sm text-slate-500 hover:text-slate-900 underline underline-offset-4">
+                              Visit project →
+                            </a>
+                            <a href="#cta" className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#D42B27] via-[#7B4B9E] to-[#4E83B8] text-white text-sm font-semibold shadow-[0_8px_18px_rgba(212,43,39,0.24)] transition">
+                              Get involved
+                            </a>
+                          </>
+                        ) : (
+                          <span className="text-sm text-slate-400 italic">Coming soon</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Dot indicators */}
+            <div className="flex justify-center gap-2 mt-6">
+              {PROJECTS.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => emblaApi?.scrollTo(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${i === emblaIndex ? "w-6 bg-[#D42B27]" : "w-2 bg-slate-300"}`}
+                  aria-label={`Go to project ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop grid */}
+          <div className="hidden md:grid md:grid-cols-2 xl:grid-cols-3 gap-10">
             {PROJECTS.map((p) => (
               <div
                 key={p.title}
@@ -519,32 +604,28 @@ export default function ResponsiveBackground() {
                     className="object-cover group-hover:scale-105 transition duration-500"
                   />
                 </div>
-
                 <div className="p-8 space-y-6">
                   <h3 className="text-2xl font-semibold">{p.title}</h3>
                   <p className="text-sm text-slate-500 leading-relaxed">{p.desc}</p>
-
                   <div className="space-y-3 text-sm text-slate-600">
                     {p.benefits.map((b) => (
                       <div key={b} className="flex gap-2 items-start">
-                        <span className="w-2 h-2 mt-2 bg-[#ff4f8b] rounded-full flex-shrink-0" />
+                        <span className="w-2 h-2 mt-2 bg-[#4E83B8] rounded-full flex-shrink-0" />
                         <span>{b}</span>
                       </div>
                     ))}
                   </div>
-
                   <div className="pt-4 border-t border-slate-200 text-sm text-slate-500">
                     Impact focus:{" "}
-                    <span className="font-medium text-[#c81f34]">{p.impact}</span>
+                    <span className="font-medium text-[#D42B27]">{p.impact}</span>
                   </div>
-
                   <div className="pt-4 flex items-center justify-between">
                     {p.href ? (
                       <>
                         <a href={p.href} target="_blank" rel="noreferrer" className="text-sm text-slate-500 hover:text-slate-900 underline underline-offset-4">
                           Visit project →
                         </a>
-                        <a href="#cta" className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#ff272a] via-[#ff4f8b] to-[#ff7a45] text-white text-sm font-semibold shadow-[0_8px_18px_rgba(255,39,42,0.24)] hover:shadow-[0_10px_24px_rgba(255,79,139,0.32)] transition">
+                        <a href="#cta" className="px-5 py-2 rounded-xl bg-gradient-to-r from-[#D42B27] via-[#7B4B9E] to-[#4E83B8] text-white text-sm font-semibold shadow-[0_8px_18px_rgba(212,43,39,0.24)] hover:shadow-[0_10px_24px_rgba(78,131,184,0.32)] transition">
                           Get involved
                         </a>
                       </>
@@ -571,7 +652,7 @@ export default function ResponsiveBackground() {
       >
         <div className="max-w-6xl mx-auto space-y-8">
           <div className="text-center space-y-3">
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#ff272a]">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#D42B27]">
               What you get
             </span>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
@@ -592,7 +673,7 @@ export default function ResponsiveBackground() {
                 transition={{ delay: i * 0.1 }}
                 className="rounded-3xl border border-rose-100 bg-gradient-to-br from-white to-rose-50/40 p-8 shadow-sm space-y-4"
               >
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#ff272a] to-[#ff7a45] flex items-center justify-center text-2xl shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#D42B27] to-[#4E83B8] flex items-center justify-center text-2xl shadow-sm">
                   {card.icon}
                 </div>
                 <h3 className="text-2xl font-bold">{card.title}</h3>
@@ -613,7 +694,7 @@ export default function ResponsiveBackground() {
         className="bg-[#f8fafc] px-6 lg:px-24 py-16 md:py-20"
       >
         <div className="max-w-4xl mx-auto space-y-12">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ff272a] text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#D42B27] text-center">
             From the community
           </p>
 
@@ -679,7 +760,7 @@ export default function ResponsiveBackground() {
             transition={{ duration: reduceMotion ? 0 : 0.6 }}
             className="text-center space-y-4 max-w-3xl mx-auto"
           >
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#ff272a]">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#D42B27]">
               The philosophy
             </span>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
@@ -733,7 +814,7 @@ export default function ResponsiveBackground() {
               transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.1 }}
               className="bg-gradient-to-br from-rose-50 to-orange-50 rounded-3xl p-8 border border-rose-200 space-y-5"
             >
-              <p className="text-xs font-bold uppercase tracking-widest text-[#ff272a]">The iRWA way</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-[#D42B27]">The iRWA way</p>
               <div className="space-y-4">
                 {[
                   { icon: "❤️", text: "You love a project. You hold a token. Your belief earns you real benefits." },
@@ -763,7 +844,7 @@ export default function ResponsiveBackground() {
       >
         <div className="max-w-6xl mx-auto space-y-14">
           <div className="text-center space-y-4">
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#ff272a]">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#D42B27]">
               How it works
             </span>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
@@ -778,7 +859,7 @@ export default function ResponsiveBackground() {
             <svg className="hidden md:block absolute top-1/2 left-0 w-full h-2 -translate-y-1/2" viewBox="0 0 1000 10" fill="none">
               <motion.path
                 d="M50 5 H950"
-                stroke="#ff4f8b"
+                stroke="#7B4B9E"
                 strokeWidth="2"
                 strokeLinecap="round"
                 initial={{ pathLength: 0 }}
@@ -803,7 +884,7 @@ export default function ResponsiveBackground() {
                   transition={{ delay: i * 0.08 }}
                   className="relative z-10 bg-white rounded-3xl border border-black/5 p-7 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
-                  <div className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#ff272a] to-[#ff7a45] mb-4 leading-none">
+                  <div className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#D42B27] to-[#4E83B8] mb-4 leading-none">
                     {s.step}
                   </div>
                   <h3 className="text-lg font-bold mb-2">{s.title}</h3>
@@ -834,7 +915,7 @@ export default function ResponsiveBackground() {
             transition={{ duration: reduceMotion ? 0 : 0.6 }}
             className="text-center space-y-4"
           >
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#ff272a]">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#D42B27]">
               Common questions
             </span>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
@@ -857,7 +938,7 @@ export default function ResponsiveBackground() {
                   <motion.span
                     animate={{ rotate: openFaq === idx ? 45 : 0 }}
                     transition={{ duration: 0.2 }}
-                    className="text-2xl text-[#ff272a] flex-shrink-0 font-light leading-none select-none"
+                    className="text-2xl text-[#D42B27] flex-shrink-0 font-light leading-none select-none"
                   >
                     +
                   </motion.span>
@@ -894,7 +975,7 @@ export default function ResponsiveBackground() {
         className="scroll-mt-24 bg-[#0b0f19] px-4 md:px-8 lg:px-24 py-16 md:py-24 lg:py-28 relative overflow-hidden"
       >
         <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(circle,#ffffff_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-[#ff272a]/8 blur-3xl rounded-full pointer-events-none" />
+        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-[#D42B27]/8 blur-3xl rounded-full pointer-events-none" />
         <div className="absolute -bottom-32 -left-32 w-[400px] h-[400px] bg-indigo-900/30 blur-3xl rounded-full pointer-events-none" />
 
         {/* Scrolling token ticker */}
@@ -953,11 +1034,11 @@ export default function ResponsiveBackground() {
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 rounded-2xl bg-white/10 border border-white/20 px-5 py-4 text-white placeholder-white/40 outline-none focus:border-[#ff272a] focus:bg-white/15 transition"
+                className="flex-1 rounded-2xl bg-white/10 border border-white/20 px-5 py-4 text-white placeholder-white/40 outline-none focus:border-[#D42B27] focus:bg-white/15 transition"
               />
               <button
                 type="submit"
-                className="rounded-2xl bg-[#ff272a] px-7 py-4 font-semibold text-white hover:bg-[#e02020] transition whitespace-nowrap"
+                className="rounded-2xl bg-[#D42B27] px-7 py-4 font-semibold text-white hover:bg-[#B82424] transition whitespace-nowrap"
               >
                 Get in touch
               </button>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { NAV_ITEMS, resolveNavHref, type SitePath } from "./siteNavigation";
 
 type SiteFooterProps = {
@@ -13,7 +14,7 @@ export default function SiteFooter({
     <footer className="bg-white px-4 md:px-8 lg:px-24 py-10 border-t border-black/5">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="flex items-center gap-3">
-          <span className="w-8 h-8 rounded-xl bg-[#ff272a]" />
+          <Image src="/assets/logo.png" alt="iRWA" width={32} height={32} className="rounded-xl object-contain" />
           <div>
             <div className="font-bold">iRWA</div>
             <div className="text-sm text-black/60">

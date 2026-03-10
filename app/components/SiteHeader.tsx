@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { NAV_ITEMS, resolveNavHref, type SitePath } from "./siteNavigation";
@@ -60,14 +61,14 @@ export default function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Scroll progress bar */}
       <div
-        className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-[#ff272a] via-[#ff4f8b] to-[#ff7a45] z-50 transition-none"
+        className="absolute top-0 left-0 h-0.5 bg-gradient-to-r from-[#D42B27] via-[#7B4B9E] to-[#4E83B8] z-50 transition-none"
         style={{ width: `${scrollProgress * 100}%` }}
       />
       <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-24">
         <div className="mt-3 rounded-2xl border border-black/5 bg-white/80 backdrop-blur-md shadow-sm">
           <div className="flex items-center justify-between px-4 py-3 md:px-6">
             <a href={brandHref} className="flex items-center gap-3 group">
-              <span className="w-9 h-9 rounded-xl bg-[#ff272a] shadow-sm" />
+              <Image src="/assets/logo.png" alt="iRWA" width={36} height={36} className="rounded-xl object-contain" />
               <span className="font-bold text-lg tracking-tight">iRWA</span>
             </a>
 
@@ -96,13 +97,13 @@ export default function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
             <div className="flex items-center gap-2 md:gap-3">
               <a
                 href={projectsHref}
-                className="hidden sm:inline-flex min-h-11 items-center justify-center rounded-2xl border-2 border-[#1A3CFF] text-[#1A3CFF] px-4 py-2 text-sm font-semibold hover:bg-[#1A3CFF] hover:text-white transition"
+                className="hidden sm:inline-flex min-h-11 items-center justify-center rounded-2xl border-2 border-[#4E83B8] text-[#4E83B8] px-4 py-2 text-sm font-semibold hover:bg-[#4E83B8] hover:text-white transition"
               >
                 View projects
               </a>
               <a
                 href={ctaHref}
-                className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-[#ff272a] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:shadow-md transition"
+                className="inline-flex min-h-11 items-center justify-center rounded-2xl bg-gradient-to-r from-[#D42B27] to-[#4E83B8] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:shadow-md transition"
               >
                 Get Started
               </a>
@@ -194,7 +195,7 @@ export default function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
               <a
                 href={ctaHref}
                 onClick={() => setMenuOpen(false)}
-                className="text-center rounded-2xl bg-[#ff272a] px-4 py-3 font-semibold text-white shadow-sm"
+                className="text-center rounded-2xl bg-gradient-to-r from-[#D42B27] to-[#4E83B8] px-4 py-3 font-semibold text-white shadow-sm"
               >
                 Get Started
               </a>

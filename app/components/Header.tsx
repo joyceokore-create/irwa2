@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 const navItems = [
@@ -172,7 +173,7 @@ export default function Header() {
           {/* Logo */}
           <a href="#hero" onClick={handleNav("#hero")} className="flex items-center gap-3">
             <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-[#ff272a]" />
+              <Image src="/assets/logo.png" alt="iRWA" width={36} height={36} className="rounded-xl object-contain" />
               <div className="leading-tight">
                 <div className="text-lg md:text-xl font-extrabold tracking-tight">iRWA</div>
                 <div className={`text-xs -mt-0.5 hidden sm:block ${dark ? "text-white/55" : "text-black/50"}`}>
@@ -243,7 +244,7 @@ export default function Header() {
               whileTap={{ scale: 0.98 }}
               className={[
                 "hidden sm:inline-flex px-4 md:px-6 py-2.5 rounded-full text-sm font-semibold shadow-md transition-colors",
-                dark ? "bg-white text-black" : "bg-[#ff272a] text-white",
+                dark ? "bg-white text-black" : "bg-gradient-to-r from-[#D42B27] to-[#4E83B8] text-white",
               ].join(" ")}
             >
               Explore
@@ -320,7 +321,7 @@ export default function Header() {
                 onClick={handleNav("#projects")}
                 className={[
                   "block text-center px-4 py-3 rounded-xl text-sm font-semibold shadow-md mt-2 transition-colors",
-                  dark ? "bg-white text-black" : "bg-[#ff272a] text-white",
+                  dark ? "bg-white text-black" : "bg-gradient-to-r from-[#D42B27] to-[#4E83B8] text-white",
                 ].join(" ")}
               >
                 Explore Projects
