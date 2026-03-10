@@ -171,15 +171,9 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-24 h-16 md:h-20 flex items-center justify-between">
           {/* Logo */}
-          <a href="#hero" onClick={handleNav("#hero")} className="flex items-center gap-3">
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3">
-              <Image src="/assets/logo.png" alt="iRWA" width={36} height={36} className="rounded-xl object-contain" />
-              <div className="leading-tight">
-                <div className="text-lg md:text-xl font-extrabold tracking-tight">iRWA</div>
-                <div className={`text-xs -mt-0.5 hidden sm:block ${dark ? "text-white/55" : "text-black/50"}`}>
-                  Tokenize connection
-                </div>
-              </div>
+          <a href="#hero" onClick={handleNav("#hero")} className="flex items-center">
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <Image src="/assets/logo.png" alt="iRWA" width={110} height={62} className="object-contain" style={{ maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 50%, transparent 100%)", WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 50%, transparent 100%)" }} />
             </motion.div>
           </a>
 

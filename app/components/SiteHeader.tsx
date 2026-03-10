@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { NAV_ITEMS, resolveNavHref, type SitePath } from "./siteNavigation";
 
@@ -67,9 +67,8 @@ export default function SiteHeader({ currentPath = "/" }: SiteHeaderProps) {
       <div className="mx-auto max-w-7xl px-4 md:px-8 lg:px-24">
         <div className="mt-3 rounded-2xl border border-black/5 bg-white/80 backdrop-blur-md shadow-sm">
           <div className="flex items-center justify-between px-4 py-3 md:px-6">
-            <a href={brandHref} className="flex items-center gap-3 group">
-              <Image src="/assets/logo.png" alt="iRWA" width={36} height={36} className="rounded-xl object-contain" />
-              <span className="font-bold text-lg tracking-tight">iRWA</span>
+            <a href={brandHref} className="flex items-center group">
+              <Image src="/assets/logo.png" alt="iRWA" width={110} height={62} className="object-contain" style={{ maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 50%, transparent 100%)", WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 50%, transparent 100%)" }} />
             </a>
 
             <nav className="hidden md:flex items-center gap-6">
