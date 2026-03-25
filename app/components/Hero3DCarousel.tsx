@@ -4,67 +4,24 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-const items = [
-  {
-    title: "BeanYou",
-    subtitle: "Coffee participation economy",
-    metric: "ESG · Retail",
-    img: "/assets/bean-you.jpg",
-  },
-  {
-    title: "National Treasures",
-    subtitle: "Art & cultural identity",
-    metric: "Belief Economy",
-    img: "/assets/Persistence.jpeg",
-  },
-  {
-    title: "Zut Island",
-    subtitle: "Mediterranean olive & wellbeing",
-    metric: "Peace Economy",
-    img: "/assets/4bc9574431d9787ae40236108382b161a5adf868.png",
-  },
-  {
-    title: "EV Minerals",
-    subtitle: "Ethical mineral sourcing",
-    metric: "Energy Transition",
-    img: "/assets/ev-mineral.jpg",
-  },
-  {
-    title: "Aged Spirits",
-    subtitle: "Provenance, loyalty & taste",
-    metric: "Experience Economy",
-    img: "/assets/a4c5131ae8219ac19c24047be967a2d3c822f1ad.png",
-  },
-  {
-    title: "Rewilding",
-    subtitle: "Biodiversity & natural capital",
-    metric: "Environmental",
-    img: "/assets/a66a47c36d7207e9df02414e897290bdf14b3310.png",
-  },
-  {
-    title: "Pilgrimage Routes",
-    subtitle: "Sacred journeys & community",
-    metric: "Faith Economy",
-    img: "/assets/3e0a9eba5cdbf6d1876eea47493c5b5cd61c5c83.png",
-  },
-  {
-    title: "Healthcare Impact",
-    subtitle: "Community health outcomes",
-    metric: "Social Capital",
-    img: "/assets/50ba58402031d878c19b9f7ed60c649eae10e7de.png",
-  },
-  {
-    title: "Token Networks",
-    subtitle: "Infrastructure of connection",
-    metric: "Web3 Layer",
-    img: "/assets/b170ca6fdee988b2dc9887b841d001a7bdd1dfce.png",
-  },
-  {
-    title: "Education Equity",
-    subtitle: "Knowledge as community capital",
-    metric: "Social Impact",
-    img: "/assets/d359ba6ab683bc4be7edb87e78636e29103ae855.png",
-  },
+interface CarouselItem {
+  title: string;
+  subtitle: string;
+  metric: string;
+  img: string | null;
+  fallback?: string;
+}
+
+const items: CarouselItem[] = [
+  { title: "BeanYou", subtitle: "Coffee participation economy", metric: "ESG · Retail", img: "/assets/bean-you.jpg" },
+  { title: "Dalí", subtitle: "Art & cultural heritage", metric: "Belief Economy", img: "/assets/Dali.jpeg" },
+  { title: "Zut Island", subtitle: "Mediterranean olive & wellbeing", metric: "Peace Economy", img: "/assets/Zuttoken.webp", fallback: "linear-gradient(135deg, #7dd3fc 0%, #0ea5e9 60%, #0369a1 100%)" },
+  { title: "EV Minerals", subtitle: "Ethical mineral sourcing", metric: "Energy Transition", img: "/assets/ev-mineral.jpg" },
+  { title: "Rewilding", subtitle: "Biodiversity & natural capital", metric: "Environmental", img: "/assets/a66a47c36d7207e9df02414e897290bdf14b3310.png" },
+  { title: "Pilgrimage Routes", subtitle: "Sacred journeys & community", metric: "Faith Economy", img: "/assets/3e0a9eba5cdbf6d1876eea47493c5b5cd61c5c83.png" },
+  { title: "Healthcare Impact", subtitle: "Community health outcomes", metric: "Social Capital", img: null, fallback: "linear-gradient(135deg, #6ee7b7 0%, #10b981 60%, #059669 100%)" },
+  { title: "Token Networks", subtitle: "Infrastructure of connection", metric: "Web3 Layer", img: "/assets/b170ca6fdee988b2dc9887b841d001a7bdd1dfce.png" },
+  { title: "Education Equity", subtitle: "Knowledge as community capital", metric: "Social Impact", img: "/assets/d359ba6ab683bc4be7edb87e78636e29103ae855.png" },
 ];
 
 const VISIBLE_SIDE_CARDS = 2;
@@ -150,13 +107,25 @@ export default function Hero3DCarousel() {
                   WebkitBackfaceVisibility: "hidden",
                 }}
               >
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 220px, (max-width: 768px) 280px, (max-width: 1024px) 340px, 380px"
-                />
+                {item.img ? (
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 220px, (max-width: 768px) 280px, (max-width: 1024px) 340px, 380px"
+                  />
+                ) : (
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: item.fallback ?? "#e2e8f0" }}
+                  >
+                    <div className="absolute inset-0 opacity-20 bg-[linear-gradient(45deg,rgba(255,255,255,0.3)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.3)_50%,rgba(255,255,255,0.3)_75%,transparent_75%)] bg-[size:20px_20px]" />
+                    <div className="absolute bottom-16 left-0 right-0 flex justify-center">
+                      <span className="text-white/50 text-xs font-medium tracking-wide uppercase">Image placeholder</span>
+                    </div>
+                  </div>
+                )}
 
                 {/* Gloss reflection */}
                 <div

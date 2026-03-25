@@ -14,7 +14,7 @@ export default function SiteFooter({
     <footer className="bg-white px-4 md:px-8 lg:px-24 py-10 border-t border-black/5">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="flex items-center">
-          <Image src="/assets/logo.png" alt="iRWA" width={100} height={56} className="object-contain" style={{ maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 50%, transparent 100%)", WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 50%, transparent 100%)" }} />
+          <Image src="/assets/logo2.png" alt="iRWA" width={100} height={56} className="object-contain"  />
         </div>
 
         <div className="flex flex-wrap gap-4 text-sm text-black/60">
