@@ -14,13 +14,12 @@ interface CarouselItem {
 
 const items: CarouselItem[] = [
   { title: "BeanYou", subtitle: "Coffee participation economy", metric: "ESG · Retail", img: "/assets/bean-you.jpg" },
-  { title: "Dalí", subtitle: "Art & cultural heritage", metric: "Belief Economy", img: "/assets/Dali.jpeg" },
-  { title: "Zut Island", subtitle: "Mediterranean olive & wellbeing", metric: "Peace Economy", img: "/assets/Zuttoken.webp", fallback: "linear-gradient(135deg, #7dd3fc 0%, #0ea5e9 60%, #0369a1 100%)" },
+  { title: "Dalí", subtitle: "Art & cultural heritage", metric: "Belief Economy", img: "/assets/Persistence.jpeg" },
+  { title: "Zut Island", subtitle: "Mediterranean olive & wellbeing", metric: "Peace Economy", img: "/assets/Zut.webp" },
   { title: "EV Minerals", subtitle: "Ethical mineral sourcing", metric: "Energy Transition", img: "/assets/ev-mineral.jpg" },
   { title: "Rewilding", subtitle: "Biodiversity & natural capital", metric: "Environmental", img: "/assets/a66a47c36d7207e9df02414e897290bdf14b3310.png" },
   { title: "Pilgrimage Routes", subtitle: "Sacred journeys & community", metric: "Faith Economy", img: "/assets/3e0a9eba5cdbf6d1876eea47493c5b5cd61c5c83.png" },
   { title: "Healthcare Impact", subtitle: "Community health outcomes", metric: "Social Capital", img: null, fallback: "linear-gradient(135deg, #6ee7b7 0%, #10b981 60%, #059669 100%)" },
-  { title: "Token Networks", subtitle: "Infrastructure of connection", metric: "Web3 Layer", img: "/assets/b170ca6fdee988b2dc9887b841d001a7bdd1dfce.png" },
   { title: "Education Equity", subtitle: "Knowledge as community capital", metric: "Social Impact", img: "/assets/d359ba6ab683bc4be7edb87e78636e29103ae855.png" },
 ];
 

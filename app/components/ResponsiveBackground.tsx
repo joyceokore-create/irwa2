@@ -246,7 +246,11 @@ export default function ResponsiveBackground() {
     return () => obs.disconnect();
   }, []);
 
-  const CYCLING_WORDS = ["love", "belief", "culture", "passion", "belonging", "identity"];
+  const CYCLING_WORDS = [
+    "love", "belief", "culture", "passion", "belonging", "identity",
+    "ideology", "faith", "opinion", "values", "happiness", "empowerment",
+    "joy", "kindness", "heritage", "trust", "community", "purpose",
+  ];
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
@@ -739,7 +743,7 @@ export default function ResponsiveBackground() {
           </div>
 
           {/* Desktop grid */}
-          <div className="hidden md:grid md:grid-cols-2 xl:grid-cols-3 gap-10">
+          <div className="hidden md:grid md:grid-cols-4 gap-6">
             {PROJECTS.map((p) => (
               <div
                 key={p.title}
