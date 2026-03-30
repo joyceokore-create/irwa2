@@ -13,14 +13,23 @@ interface CarouselItem {
 }
 
 const items: CarouselItem[] = [
-  { title: "BeanYou", subtitle: "Coffee participation economy", metric: "ESG · Retail", img: "/assets/bean-you.jpg" },
-  { title: "Dalí", subtitle: "Art & cultural heritage", metric: "Belief Economy", img: "/assets/Persistence.jpeg" },
-  { title: "Zut Island", subtitle: "Mediterranean olive & wellbeing", metric: "Peace Economy", img: "/assets/Zut.webp" },
-  { title: "EV Minerals", subtitle: "Ethical mineral sourcing", metric: "Energy Transition", img: "/assets/ev-mineral.jpg" },
-  { title: "Rewilding", subtitle: "Biodiversity & natural capital", metric: "Environmental", img: "/assets/a66a47c36d7207e9df02414e897290bdf14b3310.png" },
-  { title: "Pilgrimage Routes", subtitle: "Sacred journeys & community", metric: "Faith Economy", img: "/assets/3e0a9eba5cdbf6d1876eea47493c5b5cd61c5c83.png" },
-  { title: "Healthcare Impact", subtitle: "Community health outcomes", metric: "Social Capital", img: null, fallback: "linear-gradient(135deg, #6ee7b7 0%, #10b981 60%, #059669 100%)" },
-  { title: "Education Equity", subtitle: "Knowledge as community capital", metric: "Social Impact", img: "/assets/d359ba6ab683bc4be7edb87e78636e29103ae855.png" },
+  { title: "BeanYou", subtitle: "Coffee participation economy", metric: "ESG · Retail", img: "/assets/beanyou.jpg" },
+  { title: "Dalí", subtitle: "Art & cultural heritage", metric: "Belief Economy", img: "/assets/meltingclocks.png" },
+  { title: "Zut Island", subtitle: "Mediterranean olive & wellbeing", metric: "Peace Economy", img: "/assets/Zut.webp", fallback: "linear-gradient(135deg, #7dd3fc 0%, #0ea5e9 60%, #0369a1 100%)" },
+  { title: "EV Minerals", subtitle: "Children mining so we can drive clean", metric: "Modern Slavery", img: "/assets/ev modern slavery.png" },
+  { title: "Rewilding", subtitle: "Biodiversity & natural capital", metric: "Environmental", img: "/assets/Rewilding.png" },
+  { title: "Pilgrimage Routes", subtitle: "Sacred journeys & community", metric: "Faith Economy", img: "/assets/Pilgrimage.jpg" },
+  { title: "Healthcare Impact", subtitle: "Community health outcomes", metric: "Social Capital", img: "/assets/healthcare.png" },
+  { title: "Education Equity", subtitle: "Knowledge as community capital", metric: "Social Impact", img: "/assets/Education.png" },
+  { title: "Ancient Forests", subtitle: "The lungs of civilisation", metric: "Carbon Capital", img: "/assets/Ancient forest.jpeg" },
+  { title: "Bees", subtitle: "Nature's most critical workforce", metric: "Pollination Economy", img: "/assets/bees.jpg" },
+  { title: "Petroleum", subtitle: "Black gold beneath our feet", metric: "Energy Heritage", img: "/assets/petroleum.jpg" },
+  { title: "Formula 1", subtitle: "Speed, passion & global fandom", metric: "Motorsport Culture", img: "/assets/F1.jpg" },
+  { title: "Carnival", subtitle: "The world's greatest collective joy", metric: "Cultural Expression", img: "/assets/Carnival.png" },
+  { title: "Kaaba · Mecca", subtitle: "The most visited place on earth", metric: "Faith Economy", img: "/assets/Kaaba.jpeg" },
+  { title: "The Beautiful Game", subtitle: "Where nations hold their breath", metric: "Sports Passion", img: "/assets/Football.jpg" },
+  { title: "Music Venues", subtitle: "Where sound becomes memory", metric: "Live Experience", img: "/assets/Music Venue.jpg" },
+  { title: "Gold Mines", subtitle: "Ancient wealth hidden in plain sight", metric: "Mineral Heritage", img: "/assets/Gold.jpg" },
 ];
 
 const VISIBLE_SIDE_CARDS = 2;
@@ -78,14 +87,13 @@ export default function Hero3DCarousel() {
         {items.map((item, i) => {
           const distance = getSignedDistance(i, activeIndex, items.length);
           const absDistance = Math.abs(distance);
+          const isVisible = absDistance <= VISIBLE_SIDE_CARDS;
 
-          if (absDistance > VISIBLE_SIDE_CARDS) return null;
-
-          const translateX = distance * 46;
-          const translateZ = 220 - absDistance * 95;
-          const rotateY = -distance * 26;
-          const scale = 1 - absDistance * 0.1;
-          const opacity = absDistance === 0 ? 1 : absDistance === 1 ? 0.82 : 0.52;
+          const translateX = isVisible ? distance * 46 : 0;
+          const translateZ = isVisible ? 220 - absDistance * 95 : -300;
+          const rotateY = isVisible ? -distance * 26 : 0;
+          const scale = isVisible ? 1 - absDistance * 0.1 : 0.7;
+          const opacity = !isVisible ? 0 : absDistance === 0 ? 1 : absDistance === 1 ? 0.82 : 0.52;
 
           return (
             <div
@@ -94,17 +102,15 @@ export default function Hero3DCarousel() {
               style={{
                 transform: `translateX(${translateX}%) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
                 opacity,
-                zIndex: 30 - absDistance,
+                zIndex: isVisible ? 30 - absDistance : 0,
                 transformStyle: "preserve-3d",
                 pointerEvents: absDistance === 0 ? "auto" : "none",
+                visibility: isVisible ? "visible" : "hidden",
               }}
             >
               <div
                 className="relative w-full h-full rounded-3xl overflow-hidden border border-slate-200 shadow-xl"
-                style={{
-                  backfaceVisibility: "hidden",
-                  WebkitBackfaceVisibility: "hidden",
-                }}
+                style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
               >
                 {item.img ? (
                   <Image
@@ -115,14 +121,8 @@ export default function Hero3DCarousel() {
                     sizes="(max-width: 640px) 220px, (max-width: 768px) 280px, (max-width: 1024px) 340px, 380px"
                   />
                 ) : (
-                  <div
-                    className="absolute inset-0"
-                    style={{ background: item.fallback ?? "#e2e8f0" }}
-                  >
+                  <div className="absolute inset-0" style={{ background: item.fallback ?? "#e2e8f0" }}>
                     <div className="absolute inset-0 opacity-20 bg-[linear-gradient(45deg,rgba(255,255,255,0.3)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.3)_50%,rgba(255,255,255,0.3)_75%,transparent_75%)] bg-[size:20px_20px]" />
-                    <div className="absolute bottom-16 left-0 right-0 flex justify-center">
-                      <span className="text-white/50 text-xs font-medium tracking-wide uppercase">Image placeholder</span>
-                    </div>
                   </div>
                 )}
 
@@ -130,25 +130,18 @@ export default function Hero3DCarousel() {
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
-                    background: `radial-gradient(circle at ${50 + mouse.x}% ${50 + mouse.y}%, rgba(255,255,255,0.3), transparent 60%)`,
+                    background: `radial-gradient(circle at ${50 + mouse.x}% ${50 + mouse.y}%, rgba(255,255,255,0.18), transparent 60%)`,
                     mixBlendMode: "overlay",
                   }}
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/25" />
-
-                <div className="absolute bottom-0 w-full p-5 bg-gradient-to-t from-black/40 via-black/20 to-transparent">
-                  <div className="space-y-1">
-                    <div className="text-sm font-semibold shimmer-text">
-                      {item.title}
-                    </div>
-                    <div className="text-xs text-white/70">
-                      {item.subtitle}
-                    </div>
-                    <div className="text-xs text-indigo-300 font-medium">
-                      {item.metric}
-                    </div>
-                  </div>
+                {/* Strong bottom overlay for text legibility */}
+                <div className="absolute bottom-0 w-full pt-16 pb-5 px-5 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+                  <p className="text-sm font-bold text-white leading-tight drop-shadow-md">{item.title}</p>
+                  <p className="text-[11px] text-white/85 mt-0.5 leading-snug drop-shadow">{item.subtitle}</p>
+                  <span className="inline-block mt-2 px-2.5 py-0.5 rounded-full text-[10px] font-bold text-white bg-white/20 backdrop-blur-sm border border-white/30">
+                    {item.metric}
+                  </span>
                 </div>
               </div>
             </div>

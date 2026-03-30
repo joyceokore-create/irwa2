@@ -19,6 +19,7 @@ interface Collaborator {
 }
 
 const DRIVERS: Collaborator[] = [
+  { name: "Bond", role: "Biz Dev", linkedin: "https://about.me/iambond", img: "/assets/Bond.jpeg" },
   { name: "Dinh Ho", role: "AI", linkedin: "https://www.linkedin.com/in/dinh-ho/", img: "/assets/Dinh.jpeg" },
   { name: "Harsimran Singh", role: "Social Media", linkedin: "https://www.linkedin.com/in/harsimran-singh-6466aa165/", img: "/assets/Harsimran.jpeg" },
   { name: "Joyce Okore", role: "Web", linkedin: "https://www.linkedin.com/in/joyce-okore-747551296/", img: "/assets/Joyce.jpeg" },
@@ -40,9 +41,9 @@ const THOUGHT_LEADERS: Collaborator[] = [
   { name: "Barbara T.", role: "Corporate", linkedin: "https://www.linkedin.com/in/barbara-t-a3671a16/", img: "/assets/Barbara-T.jpeg" },
   { name: "Birame Boye", role: "Dalí / Gold", linkedin: "https://www.linkedin.com/in/birame-boye-6079269a/", img: "/assets/Biraam.jpeg" },
   { name: "G. John Okoro", role: "Operations", linkedin: "https://www.linkedin.com/in/gjohnokoro/", img: "/assets/John.jpg" },
-  { name: "Jonathan Hine", role: "TBC", linkedin: null, img: "/assets/Jonathan.jpeg" },
+  { name: "Jonathan Hine", role: "Web3", linkedin: "https://raging.eth.limo", img: "/assets/Jonathan.jpeg" },
   { name: "Olinga Taeed", role: "Founder", linkedin: "https://www.linkedin.com/in/olingataeed/", img: "/assets/OLINGA.png" },
-  { name: "Terry Tudor", role: "ESG", linkedin: "https://www.linkedin.com/in/terry-tudor-05ba993/", img: "/assets/terry.jpeg" },
+  { name: "Terry Tudor", role: "ESG", linkedin: "https://www.linkedin.com/in/terry-tudor-05ba993/", img: "/assets/Terry2.jpeg" },
 ];
 
 // ── COLLABORATOR CARD ACCENT COLOURS ──────────────────────────────────────
@@ -176,12 +177,111 @@ function ThoughtLeaderCard({ name, role, linkedin, img }: Collaborator) {
   return inner;
 }
 
-const imgZutIsland = "/assets/Zutproject.webp";
+const imgZutIsland = "/assets/Zutproject.jpeg";
 
 const fadeInUpVariants = {
   hidden: { opacity: 0, y: 18 },
   visible: { opacity: 1, y: 0 },
 };
+
+// ── PROJECT CARD — photo front, unfoldable benefits ────────────────────────
+type ProjectData = {
+  tag: string; topColor: string; accent: string; img: string; title: string;
+  label: string; icon: string; labelGradient: string; desc: string;
+  impact: string; href: string; benefits: string[];
+};
+
+function ProjectCard({ p, i, noDelay }: { p: ProjectData; i: number; noDelay?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const isLive = p.tag !== "Coming soon";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 36 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.5, delay: noDelay ? 0 : i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className="bg-white rounded-2xl overflow-hidden border border-black/[0.07] flex flex-col"
+      style={{ boxShadow: "0 2px 20px rgba(0,0,0,0.08)" }}
+    >
+      {/* ── Photo ── */}
+      <div className="relative h-44 flex-shrink-0 overflow-hidden group">
+        <Image src={p.img} alt={p.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 85vw, 25vw" />
+        {/* Status badge */}
+        <div className="absolute top-3 left-3 z-10">
+          <span className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold backdrop-blur-sm border ${isLive ? "bg-black/50 text-emerald-300 border-emerald-400/40" : "bg-black/50 text-amber-300 border-amber-400/40"}`}>
+            <span className={`w-1.5 h-1.5 rounded-full inline-block ${isLive ? "bg-emerald-400" : "bg-amber-400 animate-pulse"}`} />
+            {isLive ? "Live" : "Coming soon"}
+          </span>
+        </div>
+        {/* iRWA type label */}
+        <div className="absolute inset-x-0 bottom-0 z-10 pt-10 pb-3.5 px-4 bg-gradient-to-t from-black/85 to-transparent">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-white text-[11px] font-black" style={{ background: p.labelGradient }}>
+            <span>{p.icon}</span>{p.label}
+          </span>
+        </div>
+      </div>
+
+      {/* ── Content ── */}
+      <div className="p-5 flex flex-col gap-3 flex-1">
+        <h3 className="text-lg font-bold text-black leading-tight">{p.title}</h3>
+        <p className="text-sm text-slate-500 leading-relaxed">{p.desc}</p>
+
+        {/* Unfold toggle */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="flex items-center justify-between w-full py-2 px-3 rounded-xl text-xs font-bold transition-all duration-200 hover:opacity-80"
+          style={{ color: p.accent, background: `${p.topColor}22`, border: `1px solid ${p.topColor}44` }}
+        >
+          <span>What you get</span>
+          <motion.span
+            animate={{ rotate: open ? 180 : 0 }}
+            transition={{ duration: 0.28, ease: "easeInOut" }}
+            style={{ display: "inline-block", lineHeight: 1 }}
+          >
+            ↓
+          </motion.span>
+        </button>
+
+        {/* Animated bullet list */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden"
+            >
+              <div className="space-y-2 pt-1 pb-2">
+                {p.benefits.map((b) => (
+                  <div key={b} className="flex items-start gap-2 text-sm text-slate-600">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: p.accent }} />
+                    {b}
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Footer */}
+        <div className="mt-auto pt-3 border-t border-black/[0.05] flex items-center justify-between">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{p.impact}</span>
+          {p.href ? (
+            <a href={p.href} target="_blank" rel="noreferrer"
+              className="px-3.5 py-1.5 rounded-lg text-white text-xs font-bold hover:opacity-85 transition"
+              style={{ background: "linear-gradient(135deg, #D42B27, #4E83B8)" }}>
+              View →
+            </a>
+          ) : (
+            <span className="text-xs text-slate-400 font-medium">Coming soon</span>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 
 const sectionVariants = {
@@ -294,6 +394,7 @@ export default function ResponsiveBackground() {
     {
       tag: "ESG",
       topColor: "#6ee7b7",
+      accent: "#059669",
       badgeGradient: "from-emerald-500 to-teal-600",
       img: "/assets/bean-you.jpg",
       title: "Bean You",
@@ -313,6 +414,7 @@ export default function ResponsiveBackground() {
     {
       tag: "Peace",
       topColor: "#7dd3fc",
+      accent: "#0284c7",
       badgeGradient: "from-sky-500 to-indigo-600",
       img: imgZutIsland,
       title: "Zut Island",
@@ -332,6 +434,7 @@ export default function ResponsiveBackground() {
     {
       tag: "Coming soon",
       topColor: "#D97706",
+      accent: "#b45309",
       badgeGradient: "from-amber-500 to-yellow-600",
       img: "/assets/Dali.jpeg",
       title: "Dalí",
@@ -351,6 +454,7 @@ export default function ResponsiveBackground() {
     {
       tag: "Coming soon",
       topColor: "#94a3b8",
+      accent: "#475569",
       badgeGradient: "from-slate-400 to-slate-500",
       img: "/assets/ev-mineral.jpg",
       title: "EV Minerals",
@@ -569,14 +673,21 @@ export default function ResponsiveBackground() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.65 }}
-          className="relative z-10 border-t border-gray-100 bg-white px-6 sm:px-10 lg:px-16 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-7xl mx-auto w-full"
+          className="relative z-10 border-t border-gray-100 bg-white px-6 sm:px-10 lg:px-16 py-8 md:py-10 flex flex-col sm:flex-row items-center justify-between gap-6 max-w-7xl mx-auto w-full"
         >
-          <p className="text-base sm:text-lg font-semibold text-gray-900 text-center sm:text-left">
-            Tokenize the <span className="text-[#D42B27]">connection</span> — not the asset.
+          <p className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-gray-900 text-center sm:text-left leading-tight">
+            Tokenize the{" "}
+            <span
+              className="text-transparent bg-clip-text"
+              style={{ backgroundImage: "linear-gradient(135deg, #D42B27, #4E83B8)" }}
+            >
+              connection
+            </span>{" "}
+            — not the asset.
           </p>
           <a
             href="#cta"
-            className="shrink-0 px-6 py-2.5 rounded-full text-sm font-semibold text-white hover:opacity-90 transition active:scale-[0.98]"
+            className="shrink-0 px-7 py-3 rounded-full text-sm font-semibold text-white hover:opacity-90 transition active:scale-[0.98] whitespace-nowrap"
             style={{ background: "linear-gradient(135deg, #D42B27, #4E83B8)" }}
           >
             Build with us
@@ -665,142 +776,52 @@ export default function ResponsiveBackground() {
         id="projects"
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
+        viewport={{ once: true, amount: 0.1 }}
         variants={sectionVariants}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
         className="scroll-mt-24 bg-white px-6 lg:px-24 py-20 border-t border-black/[0.04]"
       >
-        <div className="max-w-7xl mx-auto space-y-16">
-          <div className="text-center space-y-3">
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#D42B27]">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.18em] text-[#D42B27] mb-3">
               A sample of our 16 projects
             </span>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
               Projects people believe in
             </h2>
-            <p className="text-slate-500 text-base max-w-xl mx-auto italic">
-              Each of these started as a belief. Now it's an exchange-traded token.
+            <p className="text-slate-400 text-base max-w-xl mx-auto mt-3">
+              Each started as a belief. Now exchange-traded.
             </p>
           </div>
 
-          {/* Mobile carousel */}
+          {/* ── Mobile swiper ── */}
           <div className="md:hidden">
-            <div ref={emblaRef} className="overflow-hidden -mx-4 px-4">
-              <div className="flex gap-3">
-                {PROJECTS.map((p) => (
-                  <div
-                    key={p.title}
-                    className="flex-[0_0_78%] rounded-2xl bg-white border border-slate-200 shadow-md overflow-hidden flex flex-col"
-                    style={{ borderTopWidth: "3px", borderTopColor: p.topColor }}
-                  >
-                    {/* Compact photo */}
-                    <div className="relative h-40 overflow-hidden bg-slate-100 flex-shrink-0">
-                      <Image src={p.img} alt={p.title} fill className="object-cover" />
-                      {/* Gradient vignette + label */}
-                      <div className="absolute inset-x-0 bottom-0 z-10 pt-8 pb-3 px-3" style={{ background: `linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%)` }}>
-                        <div className="flex items-end justify-between">
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-white text-[11px] font-black tracking-wide backdrop-blur-sm" style={{ background: p.labelGradient }}>
-                            <span>{p.icon}</span>{p.label}
-                          </span>
-                          <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full border border-white/30 ${p.tag === "Coming soon" ? "text-white/60" : "text-emerald-300"}`}>
-                            {p.tag === "Coming soon" ? "Soon" : "Live"}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    {/* Compact content */}
-                    <div className="p-4 flex flex-col gap-2 flex-1">
-                      <h3 className="text-base font-bold leading-tight">{p.title}</h3>
-                      <p className="text-xs text-slate-500 leading-relaxed line-clamp-3">{p.desc}</p>
-                      <div className="mt-auto pt-3 flex items-center justify-between">
-                        <span className="text-[10px] font-semibold uppercase tracking-wide text-[#D42B27]">{p.impact}</span>
-                        {p.href ? (
-                          <a href={p.href} target="_blank" rel="noreferrer"
-                            className="px-3 py-1.5 rounded-lg text-white text-[11px] font-bold"
-                            style={{ background: "linear-gradient(135deg, #D42B27, #4E83B8)" }}>
-                            View →
-                          </a>
-                        ) : (
-                          <span className="text-[11px] text-slate-400">Coming soon</span>
-                        )}
-                      </div>
-                    </div>
+            <div ref={emblaRef} className="overflow-hidden -mx-6 px-6">
+              <div className="flex gap-4">
+                {PROJECTS.map((p, i) => (
+                  <div key={p.title} className="flex-[0_0_85%]">
+                    <ProjectCard p={p as ProjectData} i={i} noDelay />
                   </div>
                 ))}
               </div>
             </div>
-            {/* Dot indicators */}
             <div className="flex justify-center gap-2 mt-5">
               {PROJECTS.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => emblaApi?.scrollTo(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${i === emblaIndex ? "w-6 bg-[#D42B27]" : "w-1.5 bg-slate-300"}`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${i === emblaIndex ? "w-6 bg-[#D42B27]" : "w-1.5 bg-slate-200"}`}
                   aria-label={`Go to project ${i + 1}`}
                 />
               ))}
             </div>
           </div>
 
-          {/* Desktop grid */}
-          <div className="hidden md:grid md:grid-cols-4 gap-6">
-            {PROJECTS.map((p) => (
-              <div
-                key={p.title}
-                className="group rounded-[32px] bg-white/70 backdrop-blur-xl border border-slate-200 shadow-xl hover:shadow-2xl transition overflow-hidden"
-                style={{ borderTopWidth: "4px", borderTopColor: p.topColor }}
-              >
-                <div className="relative h-56 overflow-hidden">
-                  <Image
-                    src={p.img}
-                    alt={p.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition duration-500"
-                  />
-                  {/* Gradient vignette + creative label */}
-                  <div className="absolute inset-x-0 bottom-0 z-10 pt-16 pb-4 px-5" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)" }}>
-                    <div className="flex items-end justify-between">
-                      <span className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-white text-sm font-black tracking-wide shadow-lg" style={{ background: p.labelGradient }}>
-                        <span className="text-base">{p.icon}</span>
-                        {p.label}
-                      </span>
-                      <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full border border-white/25 backdrop-blur-sm ${p.tag === "Coming soon" ? "text-white/55" : "text-emerald-300"}`}>
-                        {p.tag === "Coming soon" ? "Coming soon" : "● Live"}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-8 space-y-6">
-                  <h3 className="text-2xl font-semibold">{p.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{p.desc}</p>
-                  <div className="space-y-3 text-sm text-slate-600">
-                    {p.benefits.map((b) => (
-                      <div key={b} className="flex gap-2 items-start">
-                        <span className="w-2 h-2 mt-2 bg-[#4E83B8] rounded-full flex-shrink-0" />
-                        <span>{b}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="pt-4 border-t border-slate-200 text-sm text-slate-500">
-                    Impact focus:{" "}
-                    <span className="font-medium text-[#D42B27]">{p.impact}</span>
-                  </div>
-                  <div className="pt-4 flex items-center justify-between">
-                    {p.href ? (
-                      <>
-                        <a href={p.href} target="_blank" rel="noreferrer" className="text-sm text-slate-500 hover:text-slate-900 underline underline-offset-4">
-                          Visit project →
-                        </a>
-                        <a href="#cta" className="px-5 py-2 rounded-xl text-white text-sm font-semibold hover:opacity-90 transition" style={{ background: "linear-gradient(135deg, #D42B27, #4E83B8)" }}>
-                          Get involved
-                        </a>
-                      </>
-                    ) : (
-                      <span className="text-sm text-slate-400 italic">Coming soon</span>
-                    )}
-                  </div>
-                </div>
-              </div>
+          {/* ── Tablet + Desktop ── */}
+          <div className="hidden md:grid md:grid-cols-2 xl:grid-cols-4 gap-5">
+            {PROJECTS.map((p, i) => (
+              <ProjectCard key={p.title} p={p as ProjectData} i={i} />
             ))}
           </div>
         </div>
