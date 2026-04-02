@@ -1,4 +1,4 @@
-export type SitePath = "/" | "/evolution" | "/instruments";
+export type SitePath = "/" | "/evolution" | "/instruments" | "/ecosystem";
 
 export type NavItem = {
   label: string;
@@ -6,14 +6,14 @@ export type NavItem = {
 };
 
 export const NAV_ITEMS: NavItem[] = [
+  { label: "Participation", href: "#participation" },
   { label: "Philosophy", href: "#concept" },
-  { label: "Our Projects", href: "#projects" },
   { label: "How It Works", href: "#system" },
   { label: "Team", href: "#collaborators" },
-  { label: "Participation", href: "#participation" },
   { label: "FAQ", href: "#faq" },
   { label: "Evolution", href: "/evolution" },
   { label: "Instruments", href: "/instruments" },
+  { label: "Ecosystem", href: "/ecosystem" },
 ];
 
 export function resolveNavHref(href: string, currentPath: SitePath) {

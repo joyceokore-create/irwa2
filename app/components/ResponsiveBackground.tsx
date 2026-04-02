@@ -19,7 +19,6 @@ interface Collaborator {
 }
 
 const DRIVERS: Collaborator[] = [
-  { name: "Bond", role: "Biz Dev", linkedin: "https://about.me/iambond", img: "/assets/Bond.jpeg" },
   { name: "Dinh Ho", role: "AI", linkedin: "https://www.linkedin.com/in/dinh-ho/", img: "/assets/Dinh.jpeg" },
   { name: "Harsimran Singh", role: "Social Media", linkedin: "https://www.linkedin.com/in/harsimran-singh-6466aa165/", img: "/assets/Harsimran.jpeg" },
   { name: "Joyce Okore", role: "Web", linkedin: "https://www.linkedin.com/in/joyce-okore-747551296/", img: "/assets/Joyce.jpeg" },
@@ -28,18 +27,19 @@ const DRIVERS: Collaborator[] = [
   { name: "Olayimika Oyebanji", role: "Coms", linkedin: "https://www.linkedin.com/in/olayimika-oyebanji-68385b1a9", img: "/assets/Olayimika.jpeg" },
   { name: "Sajin Abdu", role: "Payments", linkedin: "https://www.linkedin.com/in/sajin-abdu/", img: "/assets/Sajin.jpeg" },
   { name: "Tarisai Mukunga", role: "Interoperability", linkedin: "https://www.linkedin.com/in/tarisai-merenciana-mukunga", img: "/assets/Tarisai.jpeg" },
+  { name: "Bond", role: "Biz Dev", linkedin: "https://about.me/iambond", img: "/assets/bond1.jpeg" },
 ];
 
 const COLLAB_PROJECTS: Collaborator[] = [
   { name: "Alawi Swabury", role: "EV Minerals", linkedin: "https://www.linkedin.com/in/alawi-swabury-48582b26b/", img: "/assets/Alawi.jpeg" },
   { name: "Billy Mwangi", role: "Bean You", linkedin: "https://www.linkedin.com/in/billy-mwangi-a00b671b8/", img: "/assets/Billy.jpeg" },
   { name: "Ivan Mazi-Markov", role: "Zut Island", linkedin: "https://www.linkedin.com/in/ivan-mazi-markov-97319418b/", img: "/assets/Ivan-Mazi.jpeg" },
-  { name: "Tomeu Lamo", role: "Dalí", linkedin: "http://www.tomeulamo.com", img: "/assets/Tomeu.jpeg" },
+  { name: "Tomeu Lamo", role: "Salvador Dal\u00ed", linkedin: "http://www.tomeulamo.com", img: "/assets/Tomeu.jpeg" },
 ];
 
 const THOUGHT_LEADERS: Collaborator[] = [
   { name: "Barbara T.", role: "Corporate", linkedin: "https://www.linkedin.com/in/barbara-t-a3671a16/", img: "/assets/Barbara-T.jpeg" },
-  { name: "Birame Boye", role: "Dalí / Gold", linkedin: "https://www.linkedin.com/in/birame-boye-6079269a/", img: "/assets/Biraam.jpeg" },
+  { name: "Birame Boye", role: "Salvador Dal\u00ed / Gold", linkedin: "https://www.linkedin.com/in/birame-boye-6079269a/", img: "/assets/Biraam.jpeg" },
   { name: "G. John Okoro", role: "Operations", linkedin: "https://www.linkedin.com/in/gjohnokoro/", img: "/assets/John.jpg" },
   { name: "Jonathan Hine", role: "Web3", linkedin: "https://raging.eth.limo", img: "/assets/Jonathan.jpeg" },
   { name: "Olinga Taeed", role: "Founder", linkedin: "https://www.linkedin.com/in/olingataeed/", img: "/assets/OLINGA.png" },
@@ -432,12 +432,12 @@ export default function ResponsiveBackground() {
       ],
     },
     {
-      tag: "Coming soon",
+      tag: "Live",
       topColor: "#D97706",
       accent: "#b45309",
       badgeGradient: "from-amber-500 to-yellow-600",
       img: "/assets/Dali.jpeg",
-      title: "Dalí",
+      title: "Salvador Dal\u00ed",
       label: "Most prestigious iRWA",
       icon: "✦",
       labelGradient: "linear-gradient(135deg, #78350f, #d97706)",
@@ -630,7 +630,7 @@ export default function ResponsiveBackground() {
             <motion.a
               variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.45 } } }}
               href="#cta"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-white hover:opacity-90 hover:scale-[1.02] transition-all active:scale-[0.98]"
+              className="hidden sm:inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold text-white hover:opacity-90 hover:scale-[1.02] transition-all active:scale-[0.98]"
             style={{ background: "linear-gradient(135deg, #D42B27, #4E83B8)", boxShadow: "0 4px 14px rgba(212,43,39,0.22)" }}
             >
               Get Started →
@@ -687,7 +687,7 @@ export default function ResponsiveBackground() {
           </p>
           <a
             href="#cta"
-            className="shrink-0 px-7 py-3 rounded-full text-sm font-semibold text-white hover:opacity-90 transition active:scale-[0.98] whitespace-nowrap"
+            className="hidden sm:block shrink-0 px-7 py-3 rounded-full text-sm font-semibold text-white hover:opacity-90 transition active:scale-[0.98] whitespace-nowrap"
             style={{ background: "linear-gradient(135deg, #D42B27, #4E83B8)" }}
           >
             Build with us
@@ -726,50 +726,46 @@ export default function ResponsiveBackground() {
         </div>
       </motion.section>
 
-      {/* ─── LIVE PROJECTS STRIP ─────────────────────────────────────────── */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        variants={sectionVariants}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="bg-[#f8fafc] px-4 md:px-8 lg:px-24 py-8 md:py-10 border-b border-black/5"
-      >
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-            Live on exchange
-          </span>
-          <div className="flex flex-wrap gap-3">
-            {[
-              { name: "BeanYou", holders: "847", tag: "ESG", href: "https://beanyou.com", cls: "bg-emerald-50 text-emerald-700 border-emerald-200" },
-              { name: "Zut Island", holders: "212", tag: "Peace", href: "https://zut.digital", cls: "bg-sky-50 text-sky-700 border-sky-200" },
-              { name: "Dalí", holders: null, tag: "Coming soon", href: "https://intrauterinebirth.com/", cls: "bg-amber-50 text-amber-700 border-amber-200" },
-              { name: "EV Minerals", holders: null, tag: "Coming Q3", href: "#projects", cls: "bg-slate-50 text-slate-500 border-slate-200" },
-            ].map((p) => (
-              <a
-                key={p.name}
-                href={p.href}
-                target={p.href.startsWith("http") ? "_blank" : undefined}
-                rel={p.href.startsWith("http") ? "noreferrer" : undefined}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold border transition hover:opacity-80 ${p.cls}`}
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-current opacity-60" />
-                {p.name}
-                {p.holders && (
-                  <span className="opacity-60 font-normal">
-                    · <CountUp to={parseInt(p.holders)} /> holders
-                  </span>
-                )}
-                {!p.holders && <span className="opacity-50 font-normal text-xs">{p.tag}</span>}
-              </a>
-            ))}
-          </div>
-          <div className="hidden md:flex items-center gap-6 text-sm text-slate-500">
-            <span><span className="font-bold text-[#0b0f19]">16+</span> impact initiatives</span>
-            <span><span className="font-bold text-[#0b0f19]">IRL</span> real-world benefits</span>
-          </div>
-        </div>
-      </motion.section>
+      {/* ─── SECTION BREAKER ─────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden bg-white py-10 flex flex-col items-center justify-center gap-3">
+        {/* Animated gradient line */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+          className="w-24 h-[2px] rounded-full origin-left"
+          style={{ background: "linear-gradient(90deg, #D42B27, #7B4B9E, #4E83B8)" }}
+        />
+        {/* Pulsing orb */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.6 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+          className="relative flex items-center justify-center"
+        >
+          <motion.div
+            animate={{ scale: [1, 1.6, 1], opacity: [0.35, 0, 0.35] }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute w-5 h-5 rounded-full"
+            style={{ background: "linear-gradient(135deg, #D42B27, #4E83B8)" }}
+          />
+          <div
+            className="w-2.5 h-2.5 rounded-full relative z-10"
+            style={{ background: "linear-gradient(135deg, #D42B27, #4E83B8)" }}
+          />
+        </motion.div>
+        {/* Animated gradient line (right) */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="w-24 h-[2px] rounded-full origin-right"
+          style={{ background: "linear-gradient(270deg, #D42B27, #7B4B9E, #4E83B8)" }}
+        />
+      </div>
 
       {/* ─── PROJECTS ────────────────────────────────────────────────────── */}
       <motion.section
@@ -871,70 +867,6 @@ export default function ResponsiveBackground() {
         </div>
       </motion.section>
 
-      {/* ─── TESTIMONIAL ─────────────────────────────────────────────────── */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={sectionVariants}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="bg-[#f8fafc] px-6 lg:px-24 py-16 md:py-20"
-      >
-        <div className="max-w-4xl mx-auto space-y-12">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#D42B27] text-center">
-            From the community
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              {
-                quote: "Holding BeanYou tokens changed how I think about my morning coffee. I know exactly where it came from — and I earned my way to an on-site visit in Kenya.",
-                name: "Sarah M.",
-                role: "BeanYou token holder",
-                color: "linear-gradient(135deg, #6ee7b7, #059669)",
-              },
-              {
-                quote: "I thought blockchain was just for speculation. iRWA showed me it can mean something real — my Zut Island token gets me access to a meditation retreat I genuinely care about.",
-                name: "James T.",
-                role: "Zut Island token holder",
-                color: "linear-gradient(135deg, #7dd3fc, #2563eb)",
-              },
-            ].map((t) => (
-              <motion.div
-                key={t.name}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col justify-between gap-6"
-              >
-                <div className="relative">
-                  <span
-                    className="absolute -top-3 -left-1 text-7xl font-serif leading-none select-none pointer-events-none"
-                    style={{ color: "#D42B2712" }}
-                  >
-                    &ldquo;
-                  </span>
-                  <p className="text-slate-700 text-base md:text-lg leading-relaxed pt-5 relative z-10">
-                    {t.quote}
-                  </p>
-                </div>
-                <div className="flex items-center gap-4 pt-2 border-t border-slate-100">
-                  <div
-                    className="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center text-white text-sm font-bold"
-                    style={{ background: t.color }}
-                  >
-                    {t.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-sm text-black">{t.name}</p>
-                    <p className="text-xs text-slate-400 mt-0.5">{t.role}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
 
       {/* ─── CONCEPT — human rewrite, no formula ─────────────────────────── */}
       <motion.section
@@ -1330,7 +1262,7 @@ export default function ResponsiveBackground() {
                 <span className="text-white/20">·</span>
                 <span>EVMN <span className="text-white/30">— TBA</span></span>
                 <span className="text-white/20">·</span>
-                <span>DALI <span className="text-amber-400/70">— Coming soon</span></span>
+                <span>DALI <span className="text-emerald-400/70">— Live</span></span>
                 <span className="text-white/20">·</span>
                 <span>iRWA Exchange <span className="text-white/25">live</span></span>
                 <span className="text-white/20">·</span>

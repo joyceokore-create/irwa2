@@ -173,7 +173,7 @@ export default function Header() {
           {/* Logo */}
           <a href="#hero" onClick={handleNav("#hero")} className="flex items-center">
             <motion.div whileHover={{ scale: 1.05 }}>
-              <Image src="/assets/logo2.png" alt="iRWA" width={110} height={62} className="object-contain"  />
+              <Image src="/assets/logo4.png" alt="iRWA" width={110} height={62} className="object-contain"  />
             </motion.div>
           </a>
 

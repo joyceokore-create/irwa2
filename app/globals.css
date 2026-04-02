@@ -2,7 +2,28 @@
 @import "./styles/tailwind.css";
 @import "./styles/theme.css";
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px; /* compensate for fixed header */
+}
+
+/* Accessible focus ring using brand colour */
+:focus-visible {
+  outline: 2px solid #D42B27;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Prevent double-tap zoom delay on buttons and links */
+button, a, [role="button"], input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Prevent text selection flash on interactive elements */
+button, [role="button"] {
+  -webkit-user-select: none;
+  user-select: none;
+}
 
 .shimmer-text {
   background: linear-gradient(
